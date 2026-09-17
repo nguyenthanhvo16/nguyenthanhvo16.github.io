@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nguyen Vo Thanh — Employee Experience · People & Culture</title>
+<meta name="description" content="Nguyen Vo Thanh — People & Culture professional working across Employee Experience, Internal Communication, Culture and Employee Engagement. Ho Chi Minh City.">
+<meta property="og:title" content="Nguyen Vo Thanh — Employee Experience · People & Culture">
+<meta property="og:description" content="I solve organizational problems through the lens of employee experience.">
+<meta property="og:image" content="images/portrait.jpg">
+<meta name="theme-color" content="#0d110f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230d110f'/><text x='50%25' y='56%25' text-anchor='middle' dominant-baseline='middle' font-family='Georgia,serif' font-size='34' fill='%237fc8a0'>N</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d110f;--bg-2:#111714;--surface:#151c18;--surface-2:#1a221e;
+  --line:rgba(232,239,234,.08);--line-2:rgba(232,239,234,.14);
+  --text:#e8efea;--muted:#9aa7a0;--faint:#6d7a73;
+  --accent:#7fc8a0;--accent-deep:#3f8f67;--accent-soft:rgba(127,200,160,.10);
+  --radius:16px;--radius-sm:12px;
+  --serif:"Fraunces",Georgia,serif;--sans:"Be Vietnam Pro",system-ui,sans-serif;
+  --max:1120px;--gutter:20px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+::selection{background:var(--accent);color:var(--bg)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+section{padding:96px 0}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.15;letter-spacing:-.01em}
+html[lang="vi"] h1,html[lang="vi"] h2,html[lang="vi"] h3{line-height:1.28;letter-spacing:0}
+h2{font-size:clamp(30px,5vw,44px)}
+h3{font-size:22px}
+p{color:var(--muted)}
+strong{font-weight:500;color:var(--text)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+.section-head{max-width:700px;margin-bottom:48px}
+.section-head p{margin-top:16px;font-size:17px}
+.alt{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* NAV */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(13,17,15,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{font-family:var(--serif);font-size:19px}
+.logo span{color:var(--accent)}
+.nav-links{display:none;gap:26px;font-size:14px;color:var(--muted)}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-cta{font-size:14px;font-weight:500;padding:8px 16px;border:1px solid var(--line-2);border-radius:8px;transition:border-color .2s,color .2s}
+.nav-cta:hover{border-color:var(--accent);color:var(--accent)}
+.lang{display:inline-flex;border:1px solid var(--line-2);border-radius:999px;padding:3px}
+.lang button{font-size:12px;font-weight:500;letter-spacing:.06em;color:var(--muted);background:transparent;border:0;border-radius:999px;padding:6px 10px;cursor:pointer;transition:background .2s,color .2s}
+.lang button[aria-pressed="true"]{background:var(--accent);color:#0b140f}
+@media(min-width:960px){.nav-links{display:flex}}
+
+/* HERO */
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;width:760px;height:760px;right:-280px;top:-220px;background:radial-gradient(circle,rgba(127,200,160,.10),transparent 62%);pointer-events:none}
+.hero-name{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+.hero-name b{color:var(--text);font-weight:500}
+.hero h1{font-size:clamp(38px,7.2vw,76px);max-width:980px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:28px;font-size:15px;color:var(--muted)}
+.hero-tags span+span::before{content:"·";margin-right:18px;color:var(--faint)}
+.hero-quote{margin-top:40px;padding-left:18px;border-left:1px solid var(--accent-deep);max-width:560px;font-size:16px;color:var(--muted)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:44px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:8px;font-size:15px;font-weight:500;transition:transform .2s,background .2s,border-color .2s,color .2s}
+.btn-primary{background:var(--accent);color:#0b140f}
+.btn-primary:hover{background:#95d6b1;transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--line-2)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+
+/* BELIEFS */
+.belief{padding:28px 0;border-top:1px solid var(--line);display:grid;gap:10px}
+.belief:first-of-type{border-top:none}
+.belief h3{font-size:clamp(22px,3.2vw,28px)}
+.belief p{max-width:620px}
+.belief .num{font-family:var(--serif);color:var(--accent)}
+@media(min-width:900px){.belief{grid-template-columns:70px 1fr 1.1fr;gap:32px;align-items:baseline}}
+
+/* HOW I THINK */
+.fw{display:grid;gap:14px}
+@media(min-width:900px){.fw{grid-template-columns:1.2fr 1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.panel small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.chain span{padding:8px 14px;border:1px solid var(--line-2);border-radius:999px;font-size:14px;color:var(--text)}
+.chain i{font-style:normal;color:var(--accent)}
+.lenses{display:flex;align-items:center;justify-content:center;padding:12px 0 4px}
+.lenses div{width:118px;height:118px;border-radius:50%;border:1px solid rgba(127,200,160,.35);background:rgba(127,200,160,.05);display:flex;align-items:center;justify-content:center;text-align:center;font-size:13px;line-height:1.35;color:var(--text);padding:10px}
+.lenses div+div{margin-left:-22px}
+.process{display:grid;grid-template-columns:1fr;counter-reset:s;border-top:1px solid var(--line);margin-top:14px}
+.process li{list-style:none;padding:20px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:44px 1fr;gap:14px}
+.process li::before{counter-increment:s;content:"0" counter(s);font-family:var(--serif);color:var(--accent);font-size:15px;padding-top:4px}
+.process h3{font-size:21px;margin-bottom:2px}
+.process p{font-size:15px}
+@media(min-width:900px){.process{grid-template-columns:repeat(3,1fr);column-gap:32px}}
+.ask{margin-top:40px;display:grid;gap:14px}
+@media(min-width:760px){.ask{grid-template-columns:1fr 1fr}}
+.ask div{padding:30px;border-radius:var(--radius);border:1px solid var(--line)}
+.ask small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.ask p{font-family:var(--serif);font-size:clamp(20px,2.6vw,26px);line-height:1.35}
+.ask .no p{color:var(--faint);text-decoration:line-through;text-decoration-color:rgba(154,167,160,.35)}
+.ask .yes{background:var(--accent-soft);border-color:rgba(127,200,160,.22)}
+.ask .yes small{color:var(--accent)}
+.ask .yes p{color:var(--text)}
+
+/* TABS — browser-tab / folder metaphor */
+.tabs-shell{margin-bottom:40px}
+.tabs{position:sticky;top:64px;z-index:20;display:flex;gap:3px;overflow-x:auto;scrollbar-width:none;background:var(--bg);padding-top:6px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;background:rgba(255,255,255,.015);border:1px solid var(--line);border-bottom:1px solid var(--line);border-radius:10px 10px 0 0;padding:13px 20px;font-size:14px;color:var(--muted);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.tab:hover{color:var(--text);background:rgba(255,255,255,.035)}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--text);font-weight:500;border-color:var(--line);border-bottom-color:var(--surface)}
+.tab small{opacity:.65;margin-left:6px;font-size:12px}
+.tabpanels{border:1px solid var(--line);border-top:none;border-radius:0 var(--radius) var(--radius) var(--radius);background:var(--surface);padding:36px clamp(20px,4vw,40px) 8px;margin-top:-1px}
+.tabpanel[hidden]{display:none}
+.tabpanel{animation:fade .45s ease}
+@media(min-width:760px){.tabpanels{padding-left:40px;padding-right:40px}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.chapter{max-width:760px;margin-bottom:36px}
+.chapter .meta{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.chapter h3{font-size:clamp(26px,4vw,36px);margin-bottom:14px}
+.chapter p{font-size:17px}
+
+.grid{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:980px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:transform .3s,border-color .3s,background .3s}
+.card:hover{transform:translateY(-3px);border-color:var(--line-2);background:var(--surface-2)}
+.card .num{font-family:var(--serif);font-size:14px;color:var(--accent)}
+.card h4{font-family:var(--serif);font-weight:400;font-size:21px;line-height:1.3;color:var(--text);margin:12px 0 10px}
+.card p{font-size:15px}
+.biz{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+.biz b{display:block;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+
+/* BRING LIST — editorial rows, not a feature-card grid */
+.bring-list{border-top:1px solid var(--line)}
+.bring-row{padding:28px 0;border-bottom:1px solid var(--line);display:grid;gap:6px;transition:background .25s}
+.bring-row:hover{background:rgba(255,255,255,.015)}
+@media(min-width:860px){.bring-row{grid-template-columns:64px minmax(240px,1fr) 1.3fr;gap:8px 32px;align-items:baseline;padding:30px 4px}}
+.bring-row .num{font-family:var(--serif);color:var(--accent);font-size:15px}
+.bring-row h4{font-family:var(--serif);font-weight:400;font-size:clamp(19px,2.3vw,23px);line-height:1.3;color:var(--text)}
+.bring-row p{font-size:15px;max-width:580px}
+.chip{font-size:12.5px;padding:5px 12px;border-radius:999px;background:var(--accent-soft);color:#b9e2ca;border:1px solid rgba(127,200,160,.14)}
+.subhead{margin:48px 0 16px;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* SIGNATURE CASE */
+.sc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px;margin-bottom:16px;display:grid;gap:26px}
+@media(min-width:960px){.sc{grid-template-columns:1.15fr 1fr;padding:40px;gap:40px}}
+.sc .tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.sc .tag b{font-family:var(--serif);font-weight:400;font-size:15px;letter-spacing:0;color:var(--accent);margin-right:10px}
+.sc h3{font-size:clamp(26px,3.6vw,34px);margin:12px 0 22px}
+.row{padding:16px 0;border-top:1px solid var(--line)}
+.row h5{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.row p{font-size:15px}
+.row.link{background:var(--accent-soft);border:1px solid rgba(127,200,160,.22);border-radius:var(--radius-sm);padding:16px 18px;margin:6px 0}
+.row.link p{color:var(--text);font-weight:400}
+.row.lesson p{font-family:var(--serif);font-style:italic;font-size:18px;color:var(--text);line-height:1.45}
+.metric{display:flex;gap:28px;flex-wrap:wrap;margin-top:6px}
+.metric div b{display:block;font-family:var(--serif);font-weight:400;font-size:34px;line-height:1;color:var(--text)}
+.metric div span{font-size:13px;color:var(--muted)}
+.sc-media{display:grid;gap:12px;align-content:start}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pillars div{border:1px solid var(--line-2);border-radius:var(--radius-sm);padding:16px;background:rgba(255,255,255,.015)}
+.pillars div i{font-style:normal;font-family:var(--serif);color:var(--accent);font-size:13px}
+.pillars div p{color:var(--text);font-size:15px;margin-top:6px;line-height:1.35}
+.flywheel{border:1px dashed rgba(127,200,160,.3);border-radius:var(--radius-sm);padding:16px}
+.flywheel small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.flywheel-svg{width:100%;height:auto;display:block}
+.flywheel-svg text{fill:var(--text)}
+.note-quiet{font-size:13px;color:var(--faint)}
+
+/* FIGURES */
+figure{margin:0}
+.shot{border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--line);background:var(--surface-2);cursor:zoom-in;position:relative}
+.shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.shot:hover img{transform:scale(1.03)}
+.shot.contain img{object-fit:contain;background:#f4f5f4}
+figcaption{font-size:13px;color:var(--faint);margin-top:8px;line-height:1.5}
+.strip{display:grid;grid-auto-flow:column;grid-auto-columns:82%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.strip figure{scroll-snap-align:start}
+.strip .shot{aspect-ratio:4/3}
+@media(min-width:760px){.strip{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:repeat(3,1fr);overflow:visible}}
+.ratio-43{aspect-ratio:4/3}.ratio-wide{aspect-ratio:16/7}
+.quote-card{display:grid;gap:14px;margin-top:14px}
+@media(min-width:760px){.quote-card{grid-template-columns:1fr 1fr}}
+
+/* PROGRAM TABLE */
+.programs{border-top:1px solid var(--line)}
+.prog{display:grid;grid-template-columns:1fr auto;gap:6px 18px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.prog b{font-weight:500;color:var(--text);font-size:15px}
+.prog span{font-family:var(--serif);color:var(--text);font-size:17px;text-align:right;white-space:nowrap}
+.prog p{grid-column:1/-1;font-size:14px}
+
+/* PROOF */
+.proof{padding:72px 0}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:36px 20px}
+@media(min-width:900px){.stats{grid-template-columns:repeat(5,1fr)}}
+.stat b{display:block;font-family:var(--serif);font-weight:400;font-size:clamp(34px,4.6vw,50px);line-height:1;color:var(--text)}
+.stat b small{font-size:.45em;color:var(--muted)}
+.stat span{display:block;margin-top:12px;font-size:13.5px;color:var(--muted);line-height:1.5}
+
+/* ABOUT */
+.about-grid{display:grid;gap:48px}
+@media(min-width:900px){.about-grid{grid-template-columns:5fr 7fr;gap:72px}}
+.portrait{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);max-width:420px;aspect-ratio:4/5}
+.portrait img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+.about-text p{font-size:17px;margin-bottom:18px}
+.about-text p.lead{font-family:var(--serif);font-size:clamp(22px,2.8vw,26px);line-height:1.45;color:var(--text)}
+.evo{display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;margin:8px 0 28px;font-size:14px}
+.evo span{padding:6px 12px;border-radius:999px;border:1px solid var(--line-2);color:var(--text)}
+.evo span:last-of-type{background:var(--accent);color:#0b140f;border-color:var(--accent);font-weight:500}
+.evo i{font-style:normal;color:var(--accent)}
+.traits{margin:32px 0}
+.traits p{padding:13px 0;border-top:1px solid var(--line);font-size:15px;color:var(--muted);margin:0;line-height:1.6}
+.traits p:last-child{border-bottom:1px solid var(--line)}
+.traits b{color:var(--text);font-weight:500}
+.traits b::after{content:"—";margin:0 8px;color:var(--faint);font-weight:400}
+@media(min-width:640px){.traits p{display:flex;gap:0}.traits b{flex:0 0 190px}}
+.timeline{margin-top:36px;border-top:1px solid var(--line)}
+.tl{padding:18px 0;border-bottom:1px solid var(--line);display:grid;gap:4px}
+.tl .when{font-size:13px;color:var(--faint)}
+.tl .role{font-weight:500;color:var(--text)}
+.tl .org{font-size:15px;color:var(--muted)}
+@media(min-width:640px){.tl{grid-template-columns:170px 1fr;gap:20px}}
+.meta-grid{display:grid;gap:28px;margin-top:36px}
+@media(min-width:640px){.meta-grid{grid-template-columns:1fr 1fr}}
+.meta-grid h4{font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.meta-grid li{list-style:none;font-size:15px;color:var(--muted);padding:3px 0}
+
+/* CONTACT */
+.contact{padding:120px 0 48px}
+.contact h2{font-size:clamp(36px,6.5vw,68px);max-width:860px}
+.contact h2 em{font-style:italic;color:var(--accent)}
+.contact-links{margin-top:48px;display:grid;gap:10px}
+@media(min-width:760px){.contact-links{grid-template-columns:repeat(3,1fr)}}
+.contact-links a,.contact-links div{display:block;padding:22px 24px;border:1px solid var(--line);border-radius:var(--radius);transition:border-color .3s,transform .3s}
+.contact-links a:hover{border-color:var(--accent);transform:translateY(-3px)}
+.contact-links small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.contact-links span{font-size:15.5px;word-break:break-word}
+footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:var(--faint)}
+
+/* LIGHTBOX */
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,9,7,.92);display:none;align-items:center;justify-content:center;padding:24px;flex-direction:column;gap:14px}
+.lb.open{display:flex}
+.lb img{max-width:min(1200px,100%);max-height:80vh;border-radius:10px;object-fit:contain}
+.lb p{color:var(--muted);font-size:14px;max-width:760px;text-align:center}
+.lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:20px}
+
+/* MOTION */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+[data-vi]{transition:opacity .22s ease}
+.swapping [data-vi]{opacity:0}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.tabpanel{animation:none}.card,.btn,[data-vi],.shot img{transition:none}}
+@media(min-width:760px){:root{--gutter:40px}section{padding:128px 0}}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo">Nguyen<span>.</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#believe" data-vi="Niềm tin">Beliefs</a>
+      <a href="#think" data-vi="Cách nghĩ">How I think</a>
+      <a href="#work" data-vi="Dự án">Work</a>
+      <a href="#about" data-vi="Về mình">About</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="vi" aria-pressed="false">VI</button>
+      </div>
+      <a href="#contact" class="nav-cta" data-vi="Liên hệ">Contact</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-name reveal"><b>Nguyen Vo Thanh</b> &nbsp;/&nbsp; Võ Thành Nguyên</p>
+    <h1 class="reveal" data-vi="Mình giải quyết vấn đề của tổ chức qua lăng kính <em>trải nghiệm nhân viên.</em>">I solve organizational problems through the lens of <em>employee experience.</em></h1>
+    <div class="hero-tags reveal"><span>Employee Experience</span><span>Internal Communication</span><span>People &amp; Culture</span></div>
+    <p class="hero-quote reveal" data-vi="Mình thích xử lý vấn đề tổ chức bằng một câu hỏi đơn giản: <em>điều này đang được trải nghiệm thế nào ở phía người lao động?</em>">I like to approach organizational problems with one simple question: <em>how is this actually experienced by the people doing the work?</em></p>
+    <div class="cta-row reveal">
+      <a href="#work" class="btn btn-primary" data-vi="Xem dự án <span aria-hidden='true'>→</span>">View work <span aria-hidden="true">→</span></a>
+      <a href="#contact" class="btn btn-ghost" data-vi="Liên hệ">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEFS -->
+<section id="believe" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-vi="Điều mình tin">What I believe</span>
+      <h2 data-vi="Năm niềm tin dẫn đường.">Five beliefs that guide the work.</h2>
+    </div>
+    <div class="belief reveal"><span class="num">01</span><h3 data-vi="Con người là chiến lược.">People are the strategy.</h3><p data-vi="Hiệu suất bền vững đến từ an toàn tâm lý, không phải từ áp lực. Khi nhân viên được lắng nghe và thấy an toàn để lên tiếng, họ chủ động đóng góp.">Sustainable performance comes from psychological safety, not pressure. When people are heard and feel safe to speak up, they contribute proactively.</p></div>
+    <div class="belief reveal"><span class="num">02</span><h3 data-vi="Gắn kết là đòn bẩy kinh doanh, không phải sự kiện cho vui.">Engagement is a business lever, not a party.</h3><p data-vi="Mọi chương trình xuất phát từ một pain point thật của tổ chức — và nối trực tiếp với giữ chân nhân tài, hiệu suất và kết quả kinh doanh.">Every program starts from a real organizational pain point — and connects directly to retention, performance and business results.</p></div>
+    <div class="belief reveal"><span class="num">03</span><h3 data-vi="Văn hóa nằm ở những điểm chạm nhỏ.">Culture lives in small moments.</h3><p data-vi="Cách nhân viên được onboard, cách feedback diễn ra mỗi ngày, cách một thông điệp chạm tới người nhận — đó mới là giá trị thật của tổ chức.">How people are onboarded, how feedback happens daily, how a message lands — that's where an organization's real values show.</p></div>
+    <div class="belief reveal"><span class="num">04</span><h3 data-vi="Sự ghi nhận tạo nên cảm giác thuộc về.">Recognition creates belonging.</h3><p data-vi="Mình cá nhân hóa trải nghiệm — từ điểm chạm nhỏ đến khoảnh khắc lớn — để mỗi người thấy mình được trân trọng.">I personalize the experience — from small touchpoints to big moments — so each person feels valued.</p></div>
+    <div class="belief reveal"><span class="num">05</span><h3 data-vi="Niềm tin giữ tổ chức vững vàng.">Trust holds a company together.</h3><p data-vi="Sự tử tế phải nằm trong hệ thống — trong quy trình và cách công ty đối xử với con người, cả lúc thuận lợi lẫn lúc khó khăn.">Kindness has to live in the system — in the process and in how a company treats people, in good times and hard ones.</p></div>
+  </div>
+</section>
+
+<!-- HOW I THINK -->
+<section id="think">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-vi="Cách mình nghĩ">How I think</span>
+      <h2 data-vi="Đặt đúng vấn đề trước khi làm.">Frame the problem before doing anything.</h2>
+    </div>
+    <div class="fw">
+      <div class="panel reveal">
+        <small data-vi="Cách mình giải quyết vấn đề">How I solve problems</small>
+        <div class="chain" data-vi="<span>Vấn đề</span><i>→</i><span>Con người</span><i>→</i><span>Insight</span><i>→</i><span>Giải pháp</span><i>→</i><span>Trải nghiệm</span><i>→</i><span>Kết quả</span>"><span>Problem</span><i>→</i><span>People</span><i>→</i><span>Insight</span><i>→</i><span>Intervention</span><i>→</i><span>Experience</span><i>→</i><span>Outcome</span></div>
+      </div>
+      <div class="panel reveal">
+        <small data-vi="Ba lăng kính trong mọi quyết định">Three lenses in every decision</small>
+        <div class="lenses" data-vi="<div>Nhu cầu kinh doanh</div><div>Nhu cầu nhân viên</div><div>Văn hóa</div>"><div>Business need</div><div>Employee need</div><div>Culture</div></div>
+      </div>
+    </div>
+    <ol class="process reveal">
+      <li><div><h3>Listen</h3><p data-vi="Hiểu con người trước khi thiết kế cho họ.">Understand people before designing for them.</p></div></li>
+      <li><div><h3>Understand</h3><p data-vi="Nối nhu cầu nhân viên với bối cảnh tổ chức và kinh doanh.">Connect employee needs with organizational and business context.</p></div></li>
+      <li><div><h3>Design</h3><p data-vi="Biến insight thành truyền thông, chương trình và trải nghiệm thực tế.">Turn insights into practical communication, programs and experiences.</p></div></li>
+      <li><div><h3>Activate</h3><p data-vi="Làm cho trải nghiệm dễ hiểu, dễ tham gia.">Make the experience easy to understand and join.</p></div></li>
+      <li><div><h3>Measure</h3><p data-vi="Nhìn vào mức tham gia, feedback, mức áp dụng và nhận thức.">Look at participation, feedback, adoption and perception.</p></div></li>
+      <li><div><h3>Learn</h3><p data-vi="Mỗi chương trình là đầu vào cho chương trình sau.">Every program becomes input for the next one.</p></div></li>
+    </ol>
+    <div class="ask">
+      <div class="no reveal"><small data-vi="Mình không chỉ hỏi">I don't just ask</small><p data-vi="Nên tổ chức hoạt động gì?">What activity should we organize?</p></div>
+      <div class="yes reveal"><small data-vi="Mình hỏi">I ask</small><p data-vi="Chúng ta đang giải quyết vấn đề gì của nhân viên hay của tổ chức?">What employee or organizational problem are we trying to solve?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK / TABS -->
+<section id="work" class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-vi="Công việc">Work</span>
+      <h2 data-vi="Giá trị trước. Bằng chứng sau. Rồi mới đến hành trình.">Value first. Proof next. Then the journey.</h2>
+      <p data-vi="Sự kiện chỉ là bằng chứng — câu chuyện thật là năng lực phía sau. Dữ liệu nội bộ đã được ẩn danh.">Events are only evidence — the real story is the capability behind them. Internal data is anonymized.</p>
+    </div>
+
+    <div class="tabs-shell">
+    <div class="tabs" role="tablist" aria-label="Work">
+      <button class="tab" role="tab" id="t-bring" aria-controls="p-bring" aria-selected="true" data-vi="Giá trị mình mang lại">What I bring</button>
+      <button class="tab" role="tab" id="t-cases" aria-controls="p-cases" aria-selected="false" data-vi="Case đặc sắc">Signature cases</button>
+      <button class="tab" role="tab" id="t-restaff" aria-controls="p-restaff" aria-selected="false">Restaff <small>2024–</small></button>
+      <button class="tab" role="tab" id="t-zafago" aria-controls="p-zafago" aria-selected="false">Zafago <small>2023–24</small></button>
+      <button class="tab" role="tab" id="t-gosu" aria-controls="p-gosu" aria-selected="false">Gosu <small>2020–23</small></button>
+    </div>
+    <div class="tabpanels">
+
+    <!-- TAB 1 -->
+    <div class="tabpanel" role="tabpanel" id="p-bring" aria-labelledby="t-bring">
+      <div class="bring-list">
+        <div class="bring-row reveal"><span class="num">01</span><h4 data-vi="Biến văn hóa thành đòn bẩy kinh doanh">I turn culture into a business lever</h4><p data-vi="Mọi chương trình mình thiết kế đều gắn với một pain point thật. Mình nối gắn kết nhân viên với giữ người, thương hiệu tuyển dụng và hiệu suất — không phải làm cho vui.">Every program I design ties back to a real pain point. I connect engagement to retention, employer brand and performance — not activity for its own sake.</p></div>
+        <div class="bring-row reveal"><span class="num">02</span><h4 data-vi="Đọc tổ chức trước khi thiết kế">I read the organization before designing</h4><p data-vi="Lắng nghe trước — khảo sát, trò chuyện, dữ liệu — để tìm khoảng cách giữa điều công ty nói và điều nhân viên trải nghiệm. Rồi mới thiết kế can thiệp.">I listen first — surveys, conversations, data — to find the gap between what a company says and what people experience. Then I design the intervention.</p></div>
+        <div class="bring-row reveal"><span class="num">03</span><h4 data-vi="Giữ người qua thay đổi">I hold people through change</h4><p data-vi="Trong những thời điểm nhạy cảm — tái cấu trúc, cắt phúc lợi — mình giữ truyền thông trung thực mà tử tế, bảo vệ cả niềm tin lẫn thương hiệu tuyển dụng.">In sensitive moments — restructuring, benefit cuts — I keep communication honest yet caring, protecting both trust and the employer brand.</p></div>
+        <div class="bring-row reveal"><span class="num">04</span><h4 data-vi="Cá nhân hóa để ai cũng thấy được ghi nhận">I make everyone feel seen</h4><p data-vi="Mình cá nhân hóa trải nghiệm nhân viên — từ điểm chạm nhỏ đến khoảnh khắc lớn — để mỗi người thấy được ghi nhận và thuộc về.">I personalize the employee experience — from small touchpoints to big moments — so people feel recognized and that they belong.</p></div>
+        <div class="bring-row reveal"><span class="num">05</span><h4 data-vi="Thực thi từ đầu đến cuối">I execute end-to-end</h4><p data-vi="Từ chiến lược đến ngân sách, hậu cần, đo lường — tự làm với chương trình nhỏ, dẫn dắt team/agency với sự kiện lớn.">From strategy to budget, logistics and measurement — solo for smaller programs, leading teams and agencies for large-scale events.</p></div>
+        <div class="bring-row reveal"><span class="num">06</span><h4 data-vi="Biến trải nghiệm thành câu chuyện">I turn experience into story</h4><p data-vi="Mình biến trải nghiệm nhân viên thật thành truyền thông nội bộ và câu chuyện thương hiệu tuyển dụng mà người ta cảm được.">I turn real employee experience into internal communication and employer-brand stories people actually feel.</p></div>
+      </div>
+      <p class="subhead" data-vi="Kỹ năng">Skills</p>
+      <div class="chips">
+        <span class="chip">Internal Communications</span><span class="chip">Content &amp; Storytelling</span><span class="chip">Employee Engagement</span><span class="chip">Culture Development</span><span class="chip">Event Management (solo + agency)</span><span class="chip">Employer Branding / EVP</span><span class="chip">Employee Listening &amp; Survey</span><span class="chip">Data &amp; Reporting</span><span class="chip">Stakeholder Management</span><span class="chip">Change Communication</span><span class="chip">Onboarding &amp; Soft-skills Training</span><span class="chip">Canva</span><span class="chip">AI Tools</span><span class="chip">Microsoft 365</span>
+      </div>
+    </div>
+
+    <!-- TAB 2 -->
+    <div class="tabpanel" role="tabpanel" id="p-cases" aria-labelledby="t-cases" hidden>
+
+      <article class="sc">
+        <div>
+          <div class="tag"><b>01</b><span data-vi="Chiến lược văn hóa · Restaff">Culture Strategy · Restaff</span></div>
+          <h3 data-vi="Làm cho văn hóa trở nên hữu hình">Making Culture Tangible</h3>
+          <div class="row"><h5 data-vi="Bối cảnh">Situation</h5><p data-vi="Mô hình dedicated team khiến văn hóa của khách hàng (chủ yếu Na Uy) có thể lấn át văn hóa Restaff.">In a dedicated-team model, client culture (mostly Norwegian) can overshadow Restaff's own.</p></div>
+          <div class="row"><h5 data-vi="Mình đã làm gì">What I did</h5><p data-vi="Hỗ trợ thiết kế culture listening, phân tích khoảng cách nhận thức giữa nhân viên và quản lý, góp phần chuyển insight thành 4 culture pillars cho 2026.">Supported culture listening, analyzed the employee–manager perception gap, and helped shape it into four culture pillars for 2026.</p></div>
+          <div class="row link"><h5>Business link</h5><p data-vi="Văn hóa hiện diện rõ → giữ chân nhân tài, giảm rủi ro nghỉ việc, bảo vệ thương hiệu tuyển dụng trong mô hình phụ thuộc khách hàng.">A visible culture → talent retention, lower turnover risk, and a protected employer brand in a client-dependent model.</p></div>
+          <div class="row lesson"><h5 data-vi="Bài học">Lesson</h5><p data-vi="Không thể giả định “văn hóa đã có sẵn” — phải đo nó trước.">You can't assume culture already exists — you measure it first.</p></div>
+        </div>
+        <div class="sc-media">
+          <div class="pillars" aria-label="4 culture pillars 2026">
+            <div><i>01</i><p>Care for Self</p></div>
+            <div><i>02</i><p>Engage With Team</p></div>
+            <div><i>03</i><p>Connect with Restaff</p></div>
+            <div><i>04</i><p>Go Together with Clients</p></div>
+          </div>
+          <div class="flywheel">
+            <small data-vi="Vòng lặp văn hóa">Culture flywheel</small>
+            <svg class="flywheel-svg" viewBox="0 0 340 250" role="img" aria-label="Culture flywheel: Personal Growth leads to Performance, leads to Engagement, leads to Growth, and back to Personal Growth">
+              <defs>
+                <marker id="fwArrow" markerWidth="7" markerHeight="7" refX="3.4" refY="3.4" orient="auto">
+                  <path d="M0,0 L7,3.4 L0,6.8 Z" fill="var(--accent)"/>
+                </marker>
+              </defs>
+              <circle cx="170" cy="120" r="60" fill="none" stroke="rgba(127,200,160,.16)" stroke-width="1"/>
+              <path d="M170,60 A60,60 0 0,1 230,120" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#fwArrow)"/>
+              <path d="M230,120 A60,60 0 0,1 170,180" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#fwArrow)"/>
+              <path d="M170,180 A60,60 0 0,1 110,120" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#fwArrow)"/>
+              <path d="M110,120 A60,60 0 0,1 170,60" fill="none" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#fwArrow)"/>
+              <g font-family="var(--sans)" font-size="12.5">
+                <circle cx="170" cy="60" r="3" fill="var(--accent)"/>
+                <text x="170" y="38" text-anchor="middle" data-vi="Phát triển bản thân">Personal Growth</text>
+                <circle cx="230" cy="120" r="3" fill="var(--accent)"/>
+                <text x="264" y="124" text-anchor="start" data-vi="Hiệu suất">Performance</text>
+                <circle cx="170" cy="180" r="3" fill="var(--accent)"/>
+                <text x="170" y="206" text-anchor="middle" data-vi="Gắn kết">Engagement</text>
+                <circle cx="110" cy="120" r="3" fill="var(--accent)"/>
+                <text x="76" y="124" text-anchor="end" data-vi="Tăng trưởng">Growth</text>
+              </g>
+            </svg>
+          </div>
+          <p class="note-quiet" data-vi="Điểm khảo sát được ẩn danh — khoảng cách được mô tả bằng lời.">Survey scores are anonymized — the gap is described in words.</p>
+        </div>
+      </article>
+
+      <article class="sc">
+        <div>
+          <div class="tag"><b>02</b><span data-vi="Kích hoạt văn hóa · Restaff">Culture Activation · Restaff</span></div>
+          <h3 data-vi="18 năm “Làm cùng, không làm cho”">18 Years of Working With, Not For</h3>
+          <div class="row"><h5 data-vi="Bối cảnh">Situation</h5><p data-vi="Kỷ niệm 18 năm, khoảng 150 người — rất dễ trở thành một bữa tiệc cho vui.">18th anniversary, around 150 people — easy to become just a party.</p></div>
+          <div class="row"><h5 data-vi="Mình đã làm gì">What I did</h5><p data-vi="Gắn sự kiện với tư tưởng văn hóa “We work with, not work for”; phụ trách concept, câu chuyện, truyền thông và đo feedback.">Tied the event to the cultural idea "We work with, not work for"; owned concept, narrative, communication and feedback.</p></div>
+          <div class="row link"><h5>Business link</h5><p data-vi="Một cột mốc trở thành công cụ củng cố bản sắc và gắn kết → tăng cảm giác thuộc về.">A milestone became a tool to reinforce identity and engagement → a stronger sense of belonging.</p></div>
+          <div class="row lesson"><h5 data-vi="Bài học">Lesson</h5><p data-vi="Sự kiện tốt không chỉ vui — nó phải nói được một điều về tổ chức.">A good event isn't just fun — it says something about the organization.</p></div>
+          <div class="metric">
+            <div><b>4.39<small style="font-size:.5em;color:var(--muted)"> /5</small></b><span data-vi="hài lòng (18 phản hồi)">satisfaction (18 responses)</span></div>
+            <div><b>~150</b><span data-vi="người tham dự">attendees</span></div>
+          </div>
+        </div>
+        <div class="sc-media">
+          <figure><div class="shot ratio-43"><img src="images/restaff-birthday-cakes.jpg" alt="Birthday celebration details" loading="lazy"></div><figcaption data-vi="Những chi tiết nhỏ, mang tính cá nhân trong ngày sinh nhật.">Small, personal details on the day.</figcaption></figure>
+          <figure><div class="shot contain ratio-wide"><img src="images/restaff-birthday-feedback.jpg" alt="Birthday feedback form result 4.39 out of 5" loading="lazy"></div><figcaption data-vi="Kết quả form feedback sau sự kiện.">Post-event feedback form result.</figcaption></figure>
+        </div>
+      </article>
+
+      <article class="sc">
+        <div>
+          <div class="tag"><b>03</b><span data-vi="Truyền thông thay đổi · Restaff">Change Communication · Restaff</span></div>
+          <h3 data-vi="Nói điều khó một cách tử tế">Saying hard things, kindly</h3>
+          <div class="row"><h5 data-vi="Bối cảnh">Situation</h5><p data-vi="Lần đầu công ty cắt giảm 22 nhân sự, sau đó cắt phúc lợi (bỏ thưởng loyalty, rút gọn company trip).">The company's first-ever 22-person layoff, followed by benefit cuts (loyalty reward removed, company trip scaled down).</p></div>
+          <div class="row"><h5 data-vi="Mình đã làm gì">What I did</h5><p data-vi="Tư vấn HR Manager cách tiếp cận, đồng chấp bút thông điệp CEO — trung thực mà tử tế; truyền thông bối cảnh qua townhall và trang nội bộ.">Advised the HR Manager on the approach and co-wrote the CEO's message — honest yet caring; explained the context through townhall and the intranet.</p></div>
+          <div class="row link"><h5>Business link</h5><p data-vi="Truyền thông đúng cách trong giai đoạn khó giúp bảo vệ niềm tin và thương hiệu tuyển dụng. Những gì ghi nhận được: quá trình chuyển giao diễn ra êm, một số người rời đi bày tỏ mong muốn quay lại, và không ghi nhận trường hợp nghỉ việc nào gắn với đợt cắt phúc lợi.">Handling a hard period well protects trust and employer brand. What we observed: transitions went smoothly, some departing colleagues expressed interest in returning, and no resignations linked to the benefit changes were recorded.</p></div>
+          <div class="row lesson"><h5 data-vi="Bài học">Lesson</h5><p data-vi="Thật thà không phải nói tất cả trần trụi, mà là nói đúng cách, đúng bối cảnh.">Honesty isn't saying everything bluntly — it's saying it the right way, in the right context.</p></div>
+        </div>
+        <div class="sc-media">
+          <div class="panel" style="background:transparent">
+            <small data-vi="Nguyên tắc mình giữ">Principles I held</small>
+            <div class="chain" data-vi="<span>Nói rõ bối cảnh</span><span>Không né tránh</span><span>Tôn trọng người ở lại và người rời đi</span><span>Kênh đúng, thời điểm đúng</span>"><span>Explain the context</span><span>Don't dodge</span><span>Respect those who stay and those who leave</span><span>Right channel, right timing</span></div>
+          </div>
+          <p class="note-quiet" data-vi="Tài liệu nội bộ của case này được giữ kín.">Internal documents for this case are kept confidential.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- TAB 3 RESTAFF -->
+    <div class="tabpanel" role="tabpanel" id="p-restaff" aria-labelledby="t-restaff" hidden>
+      <div class="chapter">
+        <p class="meta" data-vi="Employee Engagement Specialist · 04/2024 — nay">Employee Engagement Specialist · Apr 2024 — Present</p>
+        <h3 data-vi="Phát triển &amp; Văn hóa doanh nghiệp">Growth &amp; Corporate Culture</h3>
+        <p data-vi="Nơi mình chuyển từ “làm hoạt động” sang “hiểu vấn đề tổ chức phía sau hoạt động” — đi sâu vào văn hóa, lắng nghe và phát triển.">Where I moved from "running activities" to "understanding the organizational problems behind them" — going deep into culture, listening and development.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><h4 data-vi="Cụ thể hóa “We Care”">Making "We Care" concrete</h4><p data-vi="Biến khẩu hiệu thành điểm chạm thật: quà sinh nhật in tên riêng (lần đầu có tại Restaff), Men's Day, The Kindred Day cho nhân viên gắn bó lâu năm, CSR.">Turned a slogan into real touchpoints: personalised birthday gifts (a first at Restaff), Men's Day, The Kindred Day for long-tenure staff, CSR.</p><p class="biz"><b>Business link</b><span data-vi="Tăng ghi nhận và cảm giác thuộc về → giữ người.">More recognition and belonging → retention.</span></p></article>
+        <article class="card"><h4 data-vi="Lắng nghe nhân viên">Employee listening</h4><p data-vi="Culture Gap Survey, khảo sát retreat hai nhánh (77 phản hồi) và Monthly Pulse Check với cái tên đời thường “Nói đi Nguyên nghe nè…”.">Culture Gap Survey, a dual-track retreat survey (77 responses), and a Monthly Pulse Check with an everyday name: "Nói đi Nguyên nghe nè…" ("Go on, I'm listening…").</p><p class="biz"><b>Business link</b><span data-vi="Dữ liệu con người cho quyết định lãnh đạo → giảm rủi ro nghỉ việc.">People data for leadership decisions → lower turnover risk.</span></p></article>
+        <article class="card"><h4 data-vi="Leadership Outing — bớt team-building, thêm kết nối">Leadership Outing — less team-building, more connection</h4><p data-vi="Chuyến đi cho CEO, Caretaker và nhân viên senior. Khảo sát nhu cầu, cho bình chọn format và quãng đường, điều phối nhà cung cấp, hậu cần và an toàn — thiết kế quanh Thiên nhiên · Kết nối lại · Nhìn lại.">A trip for the CEO, Caretakers and senior staff. Researched needs, let people vote on format and route distance, handled vendors, logistics and safety — designed around Nature · Reconnection · Reflection.</p><p class="biz"><b>Business link</b><span data-vi="Đọc đúng nhu cầu của nhóm lãnh đạo → một trải nghiệm có ý nghĩa, không bị lập trình quá mức.">Reading a senior group's real needs → a meaningful experience, not an over-programmed one.</span></p></article>
+        <article class="card"><h4 data-vi="Sở hữu kế hoạch năm/quý">Owning the annual &amp; quarterly plan</h4><p data-vi="Làm việc trực tiếp với CEO và các quản lý; vận hành truyền thông nội bộ đa kênh (Jupiter, Viva Engage, Teams, email) theo content plan hàng tháng và dữ liệu engagement.">Working directly with the CEO and managers; running multi-channel internal comms (Jupiter, Viva Engage, Teams, email) on a monthly content plan informed by engagement data.</p><p class="biz"><b>Business link</b><span data-vi="Gắn công việc con người với ưu tiên kinh doanh.">Aligning people work with business priorities.</span></p></article>
+      </div>
+
+      <p class="subhead" data-vi="Hình ảnh">In pictures</p>
+      <div class="strip">
+        <figure><div class="shot"><img src="images/restaff-yep.jpg" alt="Restaff Year End Party" loading="lazy"></div><figcaption data-vi="Year End Party — khoảng 150 người.">Year End Party — around 150 people.</figcaption></figure>
+        <figure><div class="shot"><img src="images/restaff-retreat-2025.jpg" alt="Restaff Retreat 2025" loading="lazy"></div><figcaption data-vi="Retreat 2025 — 69 người tham gia.">Retreat 2025 — 69 participants.</figcaption></figure>
+        <figure><div class="shot"><img src="images/restaff-mens-day.jpg" alt="Men's Day barbershop at Restaff" loading="lazy"></div><figcaption data-vi="Men's Day — barbershop ngay tại văn phòng.">Men's Day — a barbershop right in the office.</figcaption></figure>
+        <figure><div class="shot"><img src="images/restaff-csr-school.jpg" alt="Restaff CSR school inauguration" loading="lazy"></div><figcaption data-vi="CSR — lễ khánh thành trường ở vùng khó khăn. Khuôn mặt trẻ em đã được lược bỏ.">CSR — a school inauguration in a remote area. Children's faces removed.</figcaption></figure>
+        <figure><div class="shot"><img src="images/restaff-townhall.jpg" alt="Office watching townhall together" loading="lazy"></div><figcaption data-vi="Townhall — cùng nghe từ văn phòng.">Townhall — watched together from the office.</figcaption></figure>
+        <figure><div class="shot contain"><img src="images/restaff-pulse-check-form.jpg" alt="Nói đi Nguyên nghe nè pulse check form" loading="lazy"></div><figcaption data-vi="Form pulse check “Nói đi Nguyên nghe nè…” — một lời mời, không phải cuộc thẩm vấn.">The "Nói đi Nguyên nghe nè…" pulse form — an invitation, not an interrogation.</figcaption></figure>
+      </div>
+
+      <div class="quote-card">
+        <figure><div class="shot contain"><img src="images/restaff-colleague-note.jpg" alt="Thank-you note from a colleague" loading="lazy"></div><figcaption data-vi="Lời nhắn từ một đồng nghiệp trong ngày làm việc cuối cùng.">A note from a colleague on their last day.</figcaption></figure>
+        <div>
+          <p class="subhead" style="margin-top:0" data-vi="Chương trình &amp; con số (giữ cả số thấp)">Programs &amp; numbers (low ones included)</p>
+          <div class="programs">
+            <div class="prog"><b>Year End Party</b><span>4.38/5</span><p data-vi="~150 người tham gia.">~150 participants.</p></div>
+            <div class="prog"><b>Retreat 2025</b><span>3.69/5</span><p data-vi="69 người · 71% phản hồi · Kết nối 3.87 · Hậu cần 3.59 — hậu cần là điểm cần cải thiện.">69 people · 71% feedback rate · Connection 3.87 · Logistics 3.59 — logistics was the lesson.</p></div>
+            <div class="prog"><b>The Kindred Day</b><span>3.33/5</span><p data-vi="26 người — chương trình tri ân nhân viên lâu năm; điểm thấp là bài học thật.">26 participants — honoring long-tenure staff; the low score was a real lesson.</p></div>
+            <div class="prog"><b data-vi="Chiến dịch hỗ trợ bão lụt">Typhoon relief campaign</b><span>1:1 match</span><p data-vi="Nhân viên đóng góp, công ty đối ứng 1:1, phân bổ về 3 tỉnh.">Employee donations matched 1:1 by the company, allocated to 3 provinces.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4 ZAFAGO -->
+    <div class="tabpanel" role="tabpanel" id="p-zafago" aria-labelledby="t-zafago" hidden>
+      <div class="chapter">
+        <p class="meta" data-vi="Internal Communications &amp; Culture Development · 04/2023 — 03/2024">Internal Communications &amp; Culture Development · Apr 2023 — Mar 2024</p>
+        <h3 data-vi="Thực thi &amp; Thích nghi">Execution &amp; Adaptation</h3>
+        <p data-vi="Câu chuyện về thực thi — biến ý tưởng thành thứ chạy được, nhanh và gọn.">A story about execution — turning ideas into things that run, fast and lean.</p>
+      </div>
+      <div class="grid">
+        <article class="card"><h4 data-vi="Teambuilding sau 4 ngày onboard">Team-building after 4 days on the job</h4><p data-vi="Đọc năng lượng nhóm và thiết kế chương trình khi còn chưa có nhiều bối cảnh.">Read the group's energy and designed the program with very little context.</p><p class="biz"><b>Business link</b><span data-vi="Gắn kết đội ngũ nhanh; chứng minh khả năng deliver dưới áp lực.">Fast team bonding; delivery under pressure.</span></p></article>
+        <article class="card"><h4 data-vi="OKRs toàn công ty">Company-wide OKRs</h4><p data-vi="Thiết kế framework từ đầu, đào tạo toàn bộ nhân sự và theo sát đến khi 100% hiểu và áp dụng OKRs cá nhân.">Built the framework from scratch, trained everyone, and followed through until 100% understood and applied personal OKRs.</p><p class="biz"><b>Business link</b><span data-vi="Gắn nỗ lực cá nhân với mục tiêu công ty → alignment và năng suất.">Linking individual effort to company goals → alignment and productivity.</span></p></article>
+        <article class="card"><h4 data-vi="Onboarding văn hóa">Cultural onboarding</h4><p data-vi="Hoàn thiện tài liệu và quy trình, trực tiếp đào tạo văn hóa để 100% nhân viên mới hiểu văn hóa từ ngày đầu.">Refined materials and process, and ran culture training so 100% of new joiners understood the culture from day one.</p><p class="biz"><b>Business link</b><span data-vi="Hội nhập nhanh, rút ngắn thời gian đến hiệu suất.">Faster integration, shorter time-to-productivity.</span></p></article>
+        <article class="card"><h4 data-vi="Trainer kỹ năng mềm">Soft-skills trainer</h4><p data-vi="Thiết kế và đứng lớp theo nhu cầu thật của từng bộ phận.">Designed and delivered sessions based on each team's real needs.</p><p class="biz"><b>Business link</b><span data-vi="Nâng năng lực đội ngũ theo nhu cầu thật.">Building capability around real needs.</span></p></article>
+      </div>
+      <p class="subhead" data-vi="Hình ảnh">In pictures</p>
+      <div class="strip">
+        <figure><div class="shot"><img src="images/zafago-teambuilding.jpg" alt="Zafago team building 2023" loading="lazy"></div><figcaption data-vi="Teambuilding 2023.">Team-building 2023.</figcaption></figure>
+        <figure><div class="shot"><img src="images/zafago-training-2.jpg" alt="Nguyen facilitating a training session" loading="lazy"></div><figcaption data-vi="Đứng lớp đào tạo nội bộ.">Facilitating an internal session.</figcaption></figure>
+        <figure><div class="shot"><img src="images/zafago-training-1.jpg" alt="Nguyen leading a session" loading="lazy"></div><figcaption data-vi="Buổi chia sẻ theo nhóm nhỏ.">A small-group session.</figcaption></figure>
+        <figure><div class="shot contain"><img src="images/softskill-facilitator-deck.jpg" alt="Keeping the Flow: 4T for Facilitators deck" loading="lazy"></div><figcaption data-vi="Giáo án “Keeping the Flow: 4T for Facilitators”.">Deck: "Keeping the Flow: 4T for Facilitators".</figcaption></figure>
+        <figure><div class="shot contain"><img src="images/softskill-anger-deck.jpg" alt="Giận thôi đừng dữ soft skills deck" loading="lazy"></div><figcaption data-vi="Giáo án kỹ năng mềm “Giận thôi đừng dữ”.">Soft-skills deck: "Giận thôi đừng dữ" (on managing anger).</figcaption></figure>
+        <figure><div class="shot"><img src="images/zafago-gift-story.jpg" alt="Zafago gift shared by a colleague" loading="lazy"></div><figcaption data-vi="Một món quà nhỏ được đồng nghiệp chia sẻ lên mạng xã hội.">A small gift, shared by a colleague on social media.</figcaption></figure>
+      </div>
+    </div>
+
+    <!-- TAB 5 GOSU -->
+    <div class="tabpanel" role="tabpanel" id="p-gosu" aria-labelledby="t-gosu" hidden>
+      <div class="chapter">
+        <p class="meta" data-vi="Community Development &amp; Customer Service · 2020 — 2023">Community Development &amp; Customer Service · 2020 — 2023</p>
+        <h3 data-vi="Hiểu ngành &amp; nền tảng lấy con người làm đầu">Learning an industry &amp; a people-first foundation</h3>
+        <p data-vi="Nơi mình học đọc “người” và hiểu một ngành — muốn phục vụ ai, phải hiểu thế giới của họ trước.">Where I learned to read people and understand an industry — to serve someone, you first understand their world.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card"><h4 data-vi="Xây quy trình CS từ con số 0">Building customer service from zero</h4><p data-vi="Cho app và mảng game.">For the app and gaming products.</p><p class="biz"><b>Business link</b><span data-vi="Trải nghiệm khách hàng tốt → giữ người dùng, giảm churn.">Better CX → user retention, lower churn.</span></p></article>
+        <article class="card"><h4 data-vi="Cộng đồng game &amp; sự kiện">Game community &amp; events</h4><p data-vi="Livestream, sự kiện ingame và offline, booth.">Livestreams, in-game and offline events, booths.</p><p class="biz"><b>Business link</b><span data-vi="Gắn kết cộng đồng → giá trị vòng đời người dùng.">Community engagement → user lifetime value.</span></p></article>
+        <article class="card"><h4 data-vi="Đào tạo sản phẩm &amp; truyền thông nội bộ">Product training &amp; internal comms</h4><p data-vi="Cho nhân sự mới, PG và thực tập sinh.">For new hires, event staff and interns.</p><p class="biz"><b>Business link</b><span data-vi="Đội ngũ hiểu sản phẩm → chất lượng phục vụ đồng đều.">Product-fluent staff → consistent service quality.</span></p></article>
+      </div>
+      <p class="subhead" data-vi="Hình ảnh">In pictures</p>
+      <div class="strip">
+        <figure><div class="shot"><img src="images/gosu-booth.jpg" alt="Gosu game booth at an offline event" loading="lazy"></div><figcaption data-vi="Booth game tại sự kiện offline.">Game booth at an offline event.</figcaption></figure>
+        <figure><div class="shot"><img src="images/gosu-team.jpg" alt="Gosu team" loading="lazy"></div><figcaption data-vi="Cùng team.">With the team.</figcaption></figure>
+        <figure><div class="shot"><img src="images/gosu-outing.jpg" alt="Team outing on the water" loading="lazy"></div><figcaption data-vi="Một chuyến đi của team.">A team outing.</figcaption></figure>
+      </div>
+    </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof" aria-label="Key numbers">
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat reveal"><b>4+</b><span data-vi="năm trong People &amp; Culture, Truyền thông nội bộ &amp; EX">years in People &amp; Culture, Internal Comms &amp; EX</span></div>
+      <div class="stat reveal"><b>4.39<small> /5</small></b><span data-vi="hài lòng với sinh nhật 18 năm công ty">satisfaction, 18th company birthday</span></div>
+      <div class="stat reveal"><b>~150</b><span data-vi="người tham dự sự kiện sinh nhật">attendees at the birthday event</span></div>
+      <div class="stat reveal"><b>100+</b><span data-vi="nhân viên trong công tác gắn kết, truyền thông &amp; văn hóa">employees across engagement, comms &amp; culture work</span></div>
+      <div class="stat reveal"><b>4</b><span data-vi="trụ cột văn hóa 2026">culture pillars for 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="eyebrow" data-vi="Về mình">About</span>
+        <div class="portrait"><img src="images/portrait.jpg" alt="Portrait of Nguyen Vo Thanh" loading="lazy"></div>
+      </div>
+      <div class="about-text">
+        <p class="lead reveal" data-vi="Mình không phải người làm event muốn chuyển sang People &amp; Culture — mà là người làm People &amp; Culture đi lên từ truyền thông nội bộ và gắn kết nhân viên.">I'm not an event organizer trying to move into People &amp; Culture — I'm a People &amp; Culture professional who grew up through internal communication and engagement.</p>
+        <div class="evo reveal"><span>Internal Communication</span><i>→</i><span>Employee Engagement</span><i>→</i><span>Employee Experience</span><i>→</i><span>Culture</span><i>→</i><span>People &amp; Culture</span></div>
+        <p class="reveal" data-vi="Hơn 4 năm qua, mình làm việc với phần hành trình nhân viên nhìn ngoài thì đơn giản nhưng thật ra không: nhân viên hiểu tổ chức ra sao, kết nối với nhau thế nào, lãnh đạo giao tiếp thế nào, và văn hóa trở thành điều người ta thật sự trải nghiệm bằng cách nào. Hướng dài hạn của mình là Organizational Development.">Over 4+ years I've worked on the part of the employee journey that looks simple from outside but isn't: how people understand the organization, connect with each other, how leaders communicate, and how culture becomes something people actually experience. Long term, I'm heading toward Organizational Development.</p>
+
+        <div class="traits reveal">
+          <p><b data-vi="Lắng nghe trước">Listening-first</b><span data-vi="Vào tổ chức mới là đi nghe trước, đề xuất sau.">In a new place, I listen before I propose.</span></p>
+          <p><b data-vi="Đặt đúng vấn đề">Problem-framer</b><span data-vi="“Tham gia thấp” chưa chắc do truyền thông — có thể là thời điểm, niềm tin, khối lượng việc.">Low participation isn't always a comms issue — it may be timing, trust or workload.</span></p>
+          <p><b data-vi="Thực tế, không phô trương">Practical, not showy</b><span data-vi="Ngắn gọn, điềm tĩnh, tươi mới — không sến, không “làm màu”.">Concise, calm, fresh — no fluff.</span></p>
+          <p><b data-vi="Chủ động">Ownership</b><span data-vi="Tự đề xuất nhiều chương trình chưa từng có.">Proposes programs that didn't exist before.</span></p>
+          <p><b data-vi="Kể chuyện &amp; quan sát">Storyteller &amp; observer</b><span data-vi="Đọc năng lượng nhóm, không theo template.">Reads the room instead of following templates.</span></p>
+        </div>
+
+        <div class="timeline reveal">
+          <div class="tl"><span class="when" data-vi="04/2024 — nay">Apr 2024 — Present</span><div><div class="role">Employee Engagement Specialist</div><div class="org" data-vi="Restaff – House of Norway · IT staffing Na Uy">Restaff – House of Norway · Norwegian IT staffing</div></div></div>
+          <div class="tl"><span class="when" data-vi="04/2023 — 03/2024">Apr 2023 — Mar 2024</span><div><div class="role">Internal Communications &amp; Culture Development</div><div class="org" data-vi="Zafago Agency · Agency marketing">Zafago Agency · Marketing agency</div></div></div>
+          <div class="tl"><span class="when">2020 — 2023</span><div><div class="role">Community Development &amp; Customer Service</div><div class="org" data-vi="Gosu Online Corporation · Game / Công nghệ">Gosu Online Corporation · Gaming / Tech</div></div></div>
+        </div>
+
+        <div class="meta-grid reveal">
+          <div><h4 data-vi="Học vấn &amp; Chứng chỉ">Education &amp; Certificates</h4><ul data-vi="<li>Cử nhân Quan hệ Quốc tế — Trường ĐH Sư phạm TP.HCM</li><li>Chứng chỉ Quản trị Nhân sự Hiện đại</li><li>Chứng chỉ Phương pháp Đào tạo Kỹ năng mềm</li>"><li>B.A. International Relations &amp; Affairs — HCMC University of Education</li><li>Certificate in Modern Human Resource Management</li><li>Certificate in Soft Skills Training Methodology</li></ul></div>
+          <div><h4 data-vi="Ngôn ngữ">Languages</h4><ul data-vi="<li>Tiếng Việt — Bản ngữ</li><li>Tiếng Anh — Nâng cao</li>"><li>Vietnamese — Native</li><li>English — Advanced</li></ul></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-vi="Liên hệ">Contact</span>
+    <h2 class="reveal" data-vi="Cùng trò chuyện về khoảng giữa <em>con người và tổ chức.</em>">Let's talk about the space between <em>people and the organization.</em></h2>
+    <div class="contact-links reveal">
+      <a href="mailto:nguyenthanhvo16@gmail.com"><small>Email</small><span>nguyenthanhvo16@gmail.com</span></a>
+      <a href="https://www.linkedin.com/in/nguyenvoganket" target="_blank" rel="noopener"><small>LinkedIn</small><span>in/nguyenvoganket ↗</span></a>
+      <div><small data-vi="Địa điểm">Location</small><span data-vi="TP. Hồ Chí Minh, Việt Nam">Ho Chi Minh City, Vietnam</span></div>
+    </div>
+    <footer>
+      <span>© <span id="yr">2026</span> Nguyen Vo Thanh</span>
+      <span>Employee Experience · Internal Communication · People &amp; Culture</span>
+    </footer>
+  </div>
+</section>
+</main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image preview">
+  <button type="button" id="lbClose" aria-label="Close">×</button>
+  <img id="lbImg" alt="">
+  <p id="lbCap"></p>
+</div>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>20)};
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* Language */
+  var titles={en:document.title,vi:'Võ Thành Nguyên — Employee Experience · People & Culture'};
+  var nodes=document.querySelectorAll('[data-vi]');
+  nodes.forEach(function(el){el.setAttribute('data-en',el.innerHTML)});
+  var langBtns=document.querySelectorAll('.lang button');
+  function apply(l){
+    nodes.forEach(function(el){el.innerHTML=el.getAttribute(l==='vi'?'data-vi':'data-en')});
+    document.documentElement.lang=l;document.title=titles[l];
+    langBtns.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===l))});
+    try{localStorage.setItem('lang',l)}catch(e){}
+  }
+  langBtns.forEach(function(b){b.addEventListener('click',function(){
+    var l=b.getAttribute('data-lang');if(document.documentElement.lang===l)return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){apply(l);return;}
+    document.body.classList.add('swapping');setTimeout(function(){apply(l);document.body.classList.remove('swapping')},200);
+  })});
+  var q=new URLSearchParams(location.search).get('lang');
+  if(q!=='vi'&&q!=='en'){try{q=localStorage.getItem('lang')}catch(e){q=null}}
+  if(q==='vi')apply('vi');
+
+  /* Tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function select(t,focus){
+    tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});
+    if(focus)t.focus();
+    t.scrollIntoView({block:'nearest',inline:'nearest'});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){
+      select(t);
+      var w=document.getElementById('work'),top=document.querySelector('.tabs').getBoundingClientRect().top;
+      if(top<60)window.scrollTo({top:window.scrollY+document.getElementById(t.getAttribute('aria-controls')).getBoundingClientRect().top-140});
+    });
+    t.addEventListener('keydown',function(e){
+      var n=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+      if(n){e.preventDefault();select(tabs[(i+n+tabs.length)%tabs.length],true);}
+    });
+  });
+  tabs.forEach(function(t,i){t.tabIndex=i===0?0:-1});
+
+  /* Lightbox */
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap');
+  document.querySelectorAll('.shot img').forEach(function(img){
+    img.addEventListener('click',function(){
+      lbImg.src=img.src;lbImg.alt=img.alt;
+      var cap=img.closest('figure')&&img.closest('figure').querySelector('figcaption');
+      lbCap.textContent=cap?cap.textContent:'';lb.classList.add('open');document.getElementById('lbClose').focus();
+    });
+  });
+  function close(){lb.classList.remove('open');lbImg.src='';}
+  lb.addEventListener('click',function(e){if(e.target!==lbImg)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+
+  /* Reveal */
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
