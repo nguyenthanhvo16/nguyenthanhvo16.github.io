@@ -66,9 +66,10 @@ strong{font-weight:500;color:var(--text)}
 .hero{min-height:92svh;display:flex;align-items:center;padding:116px 0 56px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;width:760px;height:760px;right:-280px;top:-220px;background:radial-gradient(circle,rgba(127,200,160,.10),transparent 62%);pointer-events:none}
 .hero-grid{display:flex;flex-direction:column-reverse;gap:28px}
-@media(min-width:760px){.hero-grid{flex-direction:row;align-items:center;gap:48px}}
-.hero-photo{flex:0 0 auto;width:112px;aspect-ratio:4/5;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--line-2)}
-.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+@media(min-width:760px){.hero-grid{flex-direction:row;align-items:stretch;gap:48px}}
+.hero-photo{flex:0 0 auto;width:140px;aspect-ratio:4/5;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--line-2)}
+@media(min-width:760px){.hero-photo{width:300px;aspect-ratio:auto}}
+.hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 20%}
 .hero-copy{flex:1 1 auto;min-width:0}
 .hero-name{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
 .hero-name b{color:var(--text);font-weight:500}
@@ -121,10 +122,11 @@ strong{font-weight:500;color:var(--text)}
 @media(max-width:640px){.bizlink-row{flex-direction:column;align-items:flex-start;gap:6px}.bizlink-row i{transform:rotate(90deg);margin-left:2px}}
 
 /* BELIEFS */
-.belief{padding:22px 0;border-top:1px solid var(--line);display:flex;gap:24px;align-items:baseline}
+.belief{padding:28px 0;border-top:1px solid var(--line);display:flex;gap:24px;align-items:baseline}
 .belief:first-of-type{border-top:none}
 .belief .num{font-family:var(--serif);color:var(--accent);flex:0 0 38px;font-size:15px}
-.belief h3{font-size:clamp(18px,2.6vw,25px);color:var(--text)}
+.belief h3{font-size:clamp(19px,2.8vw,26px);color:var(--text);margin-bottom:10px}
+.belief p{font-size:15px;max-width:640px}
 
 /* HOW I THINK */
 .fw{display:grid;gap:14px}
@@ -359,7 +361,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
     <div class="shift reveal">
       <div class="shift-then"><small data-vi="TRƯỚC">THEN</small><p data-vi="“Nên tổ chức hoạt động gì?”">"What should we organize?"</p></div>
       <div class="shift-arrow" aria-hidden="true">→</div>
-      <div class="shift-now"><small data-vi="GIỜ">NOW</small><p data-vi="“Đang giải quyết vấn đề gì?”">"What problem are we solving?"</p></div>
+      <div class="shift-now"><small data-vi="GIỜ">NOW</small><p data-vi="“Cái mình làm đang giúp tổ chức giải quyết vấn đề gì?”">"What problem is this solving for the business?"</p></div>
     </div>
     <p class="diagram-cap reveal" data-vi="Câu hỏi đã thay đổi cách mình làm việc.">The question that changed how I work.</p>
   </div>
@@ -440,11 +442,11 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       <span class="eyebrow" data-vi="Điều mình tin">What I believe</span>
       <h2 data-vi="Năm niềm tin dẫn đường.">Five beliefs that guide the work.</h2>
     </div>
-    <div class="belief reveal"><span class="num">01</span><h3 data-vi="Hiệu suất đến từ an toàn tâm lý, không phải áp lực.">Performance grows from psychological safety, not pressure.</h3></div>
-    <div class="belief reveal"><span class="num">02</span><h3 data-vi="Gắn kết phải giải quyết vấn đề thật — không phải lấp lịch.">Engagement should solve a real problem — not fill a calendar.</h3></div>
-    <div class="belief reveal"><span class="num">03</span><h3 data-vi="Văn hóa được xây từ những khoảnh khắc nhỏ mỗi ngày.">Culture is built in small, everyday moments.</h3></div>
-    <div class="belief reveal"><span class="num">04</span><h3 data-vi="Con người làm việc tốt nhất khi họ được nhìn thấy.">People do their best work when they feel seen.</h3></div>
-    <div class="belief reveal"><span class="num">05</span><h3 data-vi="Niềm tin giữ công ty vững vàng lúc khó khăn.">Trust is what holds a company together in hard times.</h3></div>
+    <div class="belief reveal"><span class="num">01</span><div><h3 data-vi="Con người là một phần của chiến lược kinh doanh.">People are part of the business strategy.</h3><p data-vi="Hiệu suất bền vững của tổ chức không chỉ đến từ chiến lược kinh doanh, mà còn từ cách nhân viên trải nghiệm tổ chức. An toàn tâm lý, niềm tin và khả năng lên tiếng tạo điều kiện để mọi người đóng góp, hợp tác và làm việc tốt nhất.">Sustainable organizational performance depends not only on business strategy, but also on how people experience the organization. Psychological safety, trust and the ability to speak up create the conditions for people to contribute, collaborate and perform at their best.</p></div></div>
+    <div class="belief reveal"><span class="num">02</span><div><h3 data-vi="Gắn kết phải tạo ra giá trị cho tổ chức.">Engagement should create business value.</h3><p data-vi="Gắn kết không chỉ là tạo ra những hoạt động nhân viên thích. Gắn kết hiệu quả bắt đầu từ việc hiểu nhu cầu của tổ chức, rồi thiết kế trải nghiệm hỗ trợ ưu tiên kinh doanh — dù đó là củng cố sự đồng bộ, hỗ trợ thay đổi, cải thiện giữ chân nhân sự hay xây dựng đội ngũ vững mạnh hơn.">Engagement is more than creating activities that employees enjoy. Effective engagement starts with understanding an organizational need and designing experiences that support business priorities — whether that means strengthening alignment, enabling change, improving retention or building stronger teams.</p></div></div>
+    <div class="belief reveal"><span class="num">03</span><div><h3 data-vi="Văn hóa được tạo nên từ những trải nghiệm hằng ngày.">Culture is built through everyday experiences.</h3><p data-vi="Văn hóa không được định nghĩa bởi những giá trị viết trên tường hay một sự kiện công ty. Nó được cảm nhận qua những khoảnh khắc hằng ngày — cách nhân viên được onboard, cách lãnh đạo giao tiếp, cách feedback được đưa ra, cách quyết định được thực hiện và cách nhân viên được đối xử.">Culture is not defined by values written on a wall or a single company event. It is experienced through everyday moments — how people are onboarded, how leaders communicate, how feedback is given, how decisions are made and how employees are treated.</p></div></div>
+    <div class="belief reveal"><span class="num">04</span><div><h3 data-vi="Sự ghi nhận khiến con người cảm thấy mình được nhìn thấy.">Recognition makes people feel seen.</h3><p data-vi="Ghi nhận không đơn thuần là phần thưởng. Đó là làm cho đóng góp trở nên rõ ràng và có ý nghĩa. Sự ghi nhận chu đáo, trải nghiệm cá nhân hóa và những khoảnh khắc ý nghĩa có thể củng cố sự kết nối, động lực và cảm giác thuộc về.">Recognition is not simply about rewards. It is about making contribution visible and meaningful. Thoughtful recognition, personalized experiences and meaningful moments can strengthen connection, motivation and a sense of belonging.</p></div></div>
+    <div class="belief reveal"><span class="num">05</span><div><h3 data-vi="Niềm tin phải được tạo ra từ trong hệ thống.">Trust is built into the system.</h3><p data-vi="Niềm tin được hình thành từ sự nhất quán giữa điều tổ chức nói và điều nhân viên thực sự trải nghiệm. Nó tồn tại trong hành vi lãnh đạo, truyền thông, chính sách, quy trình và những tương tác hằng ngày — nhất là khi tổ chức đang trải qua bất ổn hay thay đổi.">Trust is shaped by consistency between what an organization says and what people actually experience. It lives in leadership behavior, communication, policies, processes and everyday interactions — especially when the organization is navigating uncertainty or change.</p></div></div>
   </div>
 </section>
 
