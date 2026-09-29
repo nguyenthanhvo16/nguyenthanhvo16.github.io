@@ -249,6 +249,14 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.tabpanel{animation:none}.card,.btn,[data-vi],.shot img{transition:none}}
 @media(min-width:760px){:root{--gutter:40px}section{padding:128px 0}}
 </style>
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M06VMBBMLH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-M06VMBBMLH');
+</script>
 </head>
 <body>
 
@@ -549,8 +557,8 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
         </div>
 
         <div class="cta-row reveal" style="margin-top:8px;display:flex;gap:12px;flex-wrap:wrap">
-          <a href="assets/Vo-Thanh-Nguyen-CV-EN.pdf" class="btn btn-primary" download data-vi="Tải CV (Tiếng Anh) <span aria-hidden='true'>↓</span>">Download CV (EN) <span aria-hidden="true">↓</span></a>
-          <a href="assets/Vo-Thanh-Nguyen-CV-VI.pdf" class="btn btn-primary" download data-vi="Tải CV (Tiếng Việt) <span aria-hidden='true'>↓</span>">Download CV (VI) <span aria-hidden="true">↓</span></a>
+          <a href="assets/Vo-Thanh-Nguyen-CV-EN.pdf" class="btn btn-primary" download data-vi="Tải CV (Tiếng Anh) <span aria-hidden='true'>↓</span>" onclick="typeof gtag==='function'&&gtag('event','download_cv_en',{file_name:'Vo-Thanh-Nguyen-CV-EN.pdf'})">Download CV (EN) <span aria-hidden="true">↓</span></a>
+          <a href="assets/Vo-Thanh-Nguyen-CV-VI.pdf" class="btn btn-primary" download data-vi="Tải CV (Tiếng Việt) <span aria-hidden='true'>↓</span>" onclick="typeof gtag==='function'&&gtag('event','download_cv_vi',{file_name:'Vo-Thanh-Nguyen-CV-VI.pdf'})">Download CV (VI) <span aria-hidden="true">↓</span></a>
         </div>
 
         <div class="timeline reveal">
