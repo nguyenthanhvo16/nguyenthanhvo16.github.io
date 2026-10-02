@@ -259,6 +259,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 </style>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M06VMBBMLH"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -624,6 +625,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
   <button type="button" id="libPrev" class="lb-nav lb-prev" aria-label="Previous">‹</button>
   <button type="button" id="libNext" class="lb-nav lb-next" aria-label="Next">›</button>
   <img id="libImg" alt="" draggable="false">
+  <canvas id="libCanvas" style="display:none;max-width:min(1200px,100%);max-height:80vh;border-radius:10px"></canvas>
   <p id="libCap"></p>
   <span id="libCount" class="lib-count"></span>
 </div>
@@ -717,20 +719,51 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
         card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
       });
     }
-    var liblb=document.getElementById('liblb'),libImg=document.getElementById('libImg'),libCap=document.getElementById('libCap'),libCount=document.getElementById('libCount');
-    var curItem=null,curIdx=0;
+    var liblb=document.getElementById('liblb'),libImg=document.getElementById('libImg'),libCanvas=document.getElementById('libCanvas'),libCap=document.getElementById('libCap'),libCount=document.getElementById('libCount');
+    if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+    var curItem=null,curIdx=0,curPdf=null,pdfPages=0,renderTok=0;
+    function pageCount(){return curItem&&curItem.pdf?pdfPages:(curItem&&curItem.images||[]).length;}
+    function renderPdfPage(n){
+      if(!curPdf)return;
+      var tok=++renderTok;
+      curPdf.getPage(n).then(function(page){
+        if(tok!==renderTok)return;
+        var vw=Math.min(window.innerWidth*0.9,1200),vh=window.innerHeight*0.8;
+        var base=page.getViewport({scale:1});
+        var scale=Math.min(vw/base.width,vh/base.height);
+        var viewport=page.getViewport({scale:scale});
+        libCanvas.width=viewport.width;libCanvas.height=viewport.height;
+        page.render({canvasContext:libCanvas.getContext('2d'),viewport:viewport});
+      });
+    }
     function showSlide(){
       if(!curItem)return;
-      var imgs=curItem.images||[];
-      libImg.src=imgs[curIdx]||'';
-      libCount.textContent=imgs.length?((curIdx+1)+' / '+imgs.length):'';
+      if(curItem.pdf){
+        libImg.style.display='none';libCanvas.style.display='block';
+        libCount.textContent=pdfPages?((curIdx+1)+' / '+pdfPages):'';
+        renderPdfPage(curIdx+1);
+      }else{
+        libCanvas.style.display='none';libImg.style.display='block';
+        var imgs=curItem.images||[];
+        libImg.src=imgs[curIdx]||'';
+        libCount.textContent=imgs.length?((curIdx+1)+' / '+imgs.length):'';
+      }
       libCap.textContent=curLang()==='vi'?(curItem.title_vi||curItem.title_en||''):(curItem.title_en||curItem.title_vi||'');
     }
-    function openLib(item){curItem=item;curIdx=0;showSlide();liblb.classList.add('open');document.getElementById('libClose').focus();}
-    function closeLib(){liblb.classList.remove('open');libImg.src='';curItem=null;}
+    function openLib(item){
+      curItem=item;curIdx=0;curPdf=null;pdfPages=0;
+      liblb.classList.add('open');document.getElementById('libClose').focus();
+      if(item.pdf&&window.pdfjsLib){
+        libImg.src='';
+        pdfjsLib.getDocument(item.pdf).promise.then(function(doc){curPdf=doc;pdfPages=doc.numPages;showSlide();});
+      }else{
+        showSlide();
+      }
+    }
+    function closeLib(){liblb.classList.remove('open');libImg.src='';curPdf=null;curItem=null;}
     document.getElementById('libClose').addEventListener('click',closeLib);
-    document.getElementById('libPrev').addEventListener('click',function(e){e.stopPropagation();if(!curItem)return;var n=(curItem.images||[]).length;if(!n)return;curIdx=(curIdx-1+n)%n;showSlide();});
-    document.getElementById('libNext').addEventListener('click',function(e){e.stopPropagation();if(!curItem)return;var n=(curItem.images||[]).length;if(!n)return;curIdx=(curIdx+1)%n;showSlide();});
+    document.getElementById('libPrev').addEventListener('click',function(e){e.stopPropagation();var n=pageCount();if(!n)return;curIdx=(curIdx-1+n)%n;showSlide();});
+    document.getElementById('libNext').addEventListener('click',function(e){e.stopPropagation();var n=pageCount();if(!n)return;curIdx=(curIdx+1)%n;showSlide();});
     liblb.addEventListener('click',function(e){if(e.target===liblb)closeLib()});
     document.addEventListener('keydown',function(e){
       if(!liblb.classList.contains('open'))return;
@@ -739,6 +772,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       if(e.key==='ArrowRight')document.getElementById('libNext').click();
     });
     libImg.addEventListener('contextmenu',function(e){e.preventDefault()});
+    libCanvas.addEventListener('contextmenu',function(e){e.preventDefault()});
   })();
 
   /* Reveal */
