@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Library Admin — nguyenthanhvo16.github.io</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d110f;--bg-2:#111714;--surface:#151c18;--surface-2:#1a221e;
+  --line:rgba(232,239,234,.08);--line-2:rgba(232,239,234,.14);
+  --text:#e8efea;--muted:#9aa7a0;--faint:#6d7a73;
+  --accent:#7fc8a0;--accent-deep:#3f8f67;--bad:#e07a6b;
+  --serif:"Fraunces",Georgia,serif;--sans:"Be Vietnam Pro",system-ui,sans-serif;
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;padding:40px 20px 100px}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-family:var(--serif);font-weight:400;font-size:28px;margin-bottom:6px}
+h2{font-family:var(--serif);font-weight:400;font-size:19px;margin:36px 0 14px}
+p{color:var(--muted);font-size:14.5px}
+a{color:var(--accent)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-top:16px}
+ol,ul{color:var(--muted);font-size:14.5px;padding-left:20px;margin-top:8px}
+li{margin-bottom:6px}
+code{background:var(--surface-2);border-radius:4px;padding:2px 6px;font-size:13px;color:var(--accent)}
+label{display:block;font-size:13px;color:var(--muted);margin:14px 0 6px}
+input[type=text],input[type=date],input[type=password],textarea{
+  width:100%;background:var(--surface-2);border:1px solid var(--line-2);border-radius:8px;
+  color:var(--text);padding:10px 12px;font-family:inherit;font-size:14.5px;
+}
+textarea{resize:vertical;min-height:60px}
+input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-size:14.5px;font-weight:500;border:none;cursor:pointer;background:var(--accent);color:#0b140f;margin-top:18px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.secondary{background:transparent;border:1px solid var(--line-2);color:var(--text)}
+.btn.danger{background:transparent;border:1px solid var(--bad);color:var(--bad);padding:6px 14px;font-size:13px;margin-top:0}
+.chk{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:13.5px;color:var(--muted)}
+.chk input{width:auto}
+#log{white-space:pre-wrap;font-family:monospace;font-size:12.5px;color:var(--muted);background:var(--surface-2);border-radius:8px;padding:12px;margin-top:16px;max-height:220px;overflow:auto;display:none}
+.item{display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding:12px 0}
+.item:last-child{border-bottom:none}
+.item img{width:64px;height:48px;object-fit:cover;border-radius:6px;background:var(--surface-2);flex:0 0 auto}
+.item .meta{flex:1;min-width:0}
+.item .meta b{font-size:14px;display:block}
+.item .meta span{font-size:12.5px;color:var(--faint)}
+.pill{display:inline-block;background:var(--accent-deep);color:#eafff1;font-size:11px;border-radius:999px;padding:2px 9px;margin-top:4px}
+.warn{border-color:rgba(224,122,107,.4);background:rgba(224,122,107,.08)}
+.warn p{color:#e9b5ab}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Library Admin</h1>
+  <p>Trang riêng để tự cập nhật phần "Library" (Giáo án / Plan) trên website — không cần nhờ Claude mỗi lần. Trang này không liên kết (link) từ website chính, chỉ Nguyên biết URL.</p>
+
+  <div class="box warn">
+    <p><b style="color:#e9b5ab">Lưu ý quan trọng:</b> Ảnh hiển thị trong mục Library chỉ là "xem, không cho tải" ở mức giao diện — tức là web không có nút Download. Nhưng vì ảnh vẫn hiển thị trên trình duyệt, ai đó vẫn có thể chụp màn hình hoặc bấm chuột phải lưu ảnh nếu họ cố tình. Đây không phải là bảo vệ bản quyền tuyệt đối, chỉ là hạn chế việc tải xuống thông thường.</p>
+  </div>
+
+  <h2>1. Token truy cập GitHub (chỉ Nguyên mới tạo được)</h2>
+  <div class="box">
+    <p>Claude không thể tạo token này giúp Nguyên — đây là bước Nguyên tự làm một lần trên GitHub:</p>
+    <ol>
+      <li>Vào <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (đăng nhập tài khoản <code>nguyenthanhvo16</code>)</li>
+      <li>Đặt tên bất kỳ, ví dụ <code>library-admin</code></li>
+      <li>Ở "Resource owner" chọn <code>nguyenthanhvo16</code></li>
+      <li>Ở "Repository access" chọn <b>Only select repositories</b> → chọn repo <code>nguyenthanhvo16.github.io</code></li>
+      <li>Ở "Permissions" → "Repository permissions" → tìm <b>Contents</b> → chọn <b>Read and write</b> (các mục khác để mặc định "No access")</li>
+      <li>Bấm <b>Generate token</b>, copy đoạn token (dạng <code>github_pat_...</code>) — GitHub chỉ cho xem 1 lần</li>
+      <li>Dán vào ô bên dưới</li>
+    </ol>
+    <p>Token được lưu <b>chỉ trong trình duyệt của Nguyên</b> (localStorage), không gửi cho Claude hay bất kỳ ai khác. Nếu dùng máy chung/máy lạ, nên bỏ chọn "Lưu token" và xoá sau khi dùng.</p>
+    <label for="tok">GitHub Token</label>
+    <input type="password" id="tok" placeholder="github_pat_...">
+    <div class="chk"><input type="checkbox" id="rememberTok"><label for="rememberTok" style="margin:0;color:var(--muted)">Lưu token trên máy này</label></div>
+    <button class="btn secondary" id="clearTok" type="button" style="margin-top:10px">Xoá token đã lưu</button>
+  </div>
+
+  <h2>2. Thêm tài liệu mới</h2>
+  <div class="box">
+    <label>Tiêu đề (Tiếng Anh)</label>
+    <input type="text" id="titleEn" placeholder="e.g. Onboarding Training Deck">
+    <label>Tiêu đề (Tiếng Việt)</label>
+    <input type="text" id="titleVi" placeholder="VD: Giáo án Onboarding">
+    <div class="row">
+      <div><label>Mô tả ngắn (EN)</label><textarea id="descEn"></textarea></div>
+      <div><label>Mô tả ngắn (VI)</label><textarea id="descVi"></textarea></div>
+    </div>
+    <div class="row">
+      <div><label>Tag (EN) — ví dụ "Training"</label><input type="text" id="tagEn"></div>
+      <div><label>Tag (VI) — ví dụ "Đào tạo"</label><input type="text" id="tagVi"></div>
+    </div>
+    <label>Ngày (tuỳ chọn)</label>
+    <input type="date" id="itemDate">
+    <label>Ảnh các trang (chọn nhiều ảnh, đúng theo thứ tự muốn hiển thị — PNG/JPG, xuất từ PowerPoint bằng "Save as Pictures" hoặc chụp từng slide)</label>
+    <input type="file" id="files" accept="image/*" multiple>
+    <button class="btn" id="submitBtn" type="button">Tải lên &amp; Đăng</button>
+    <div id="log"></div>
+  </div>
+
+  <h2>3. Danh sách hiện có</h2>
+  <div class="box">
+    <div id="list"><p>Đang tải...</p></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var OWNER='nguyenthanhvo16', REPO='nguyenthanhvo16.github.io', BRANCH='main';
+  var API='https://api.github.com/repos/'+OWNER+'/'+REPO;
+  var LIB_PATH='assets/library/library.json';
+
+  var tokEl=document.getElementById('tok'), rememberEl=document.getElementById('rememberTok');
+  try{
+    var saved=localStorage.getItem('lib_admin_token');
+    if(saved){tokEl.value=saved;rememberEl.checked=true;}
+  }catch(e){}
+  document.getElementById('clearTok').addEventListener('click',function(){
+    tokEl.value='';try{localStorage.removeItem('lib_admin_token')}catch(e){}
+    log('Đã xoá token khỏi trình duyệt.');
+  });
+  function persistTokenIfNeeded(){
+    try{
+      if(rememberEl.checked&&tokEl.value)localStorage.setItem('lib_admin_token',tokEl.value);
+      if(!rememberEl.checked)localStorage.removeItem('lib_admin_token');
+    }catch(e){}
+  }
+
+  var logEl=document.getElementById('log');
+  function log(msg){logEl.style.display='block';logEl.textContent+=msg+'\n';logEl.scrollTop=logEl.scrollHeight;}
+
+  function gh(path,opts){
+    opts=opts||{};
+    var headers=opts.headers||{};
+    headers['Authorization']='Bearer '+tokEl.value.trim();
+    headers['Accept']='application/vnd.github+json';
+    opts.headers=headers;
+    return fetch(API+path,opts).then(function(r){
+      if(!r.ok)return r.text().then(function(t){throw new Error(r.status+' '+t)});
+      return r.status===204?null:r.json();
+    });
+  }
+
+  function b64FromDataUrl(dataUrl){return dataUrl.split(',')[1];}
+
+  // Resize/compress an image file client-side before upload, to keep it well under GitHub's Contents API size limit.
+  function prepareImage(file){
+    return new Promise(function(resolve,reject){
+      var img=new Image();
+      var reader=new FileReader();
+      reader.onload=function(){
+        img.onload=function(){
+          var maxW=1600;
+          var scale=Math.min(1,maxW/img.width);
+          var w=Math.round(img.width*scale),h=Math.round(img.height*scale);
+          var canvas=document.createElement('canvas');
+          canvas.width=w;canvas.height=h;
+          canvas.getContext('2d').drawImage(img,0,0,w,h);
+          var dataUrl=canvas.toDataURL('image/jpeg',0.84);
+          resolve(dataUrl);
+        };
+        img.onerror=reject;
+        img.src=reader.result;
+      };
+      reader.onerror=reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function slugify(s){
+    return (s||'item').toLowerCase()
+      .replace(/[àáạảãâầấậẩẫăằắặẳẵ]/g,'a').replace(/[èéẹẻẽêềếệểễ]/g,'e')
+      .replace(/[ìíịỉĩ]/g,'i').replace(/[òóọỏõôồốộổỗơờớợởỡ]/g,'o')
+      .replace(/[ùúụủũưừứựửữ]/g,'u').replace(/[ỳýỵỷỹ]/g,'y').replace(/đ/g,'d')
+      .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')||'item';
+  }
+
+  async function getFileSha(path){
+    try{
+      var info=await gh('/contents/'+path+'?ref='+BRANCH);
+      return info.sha;
+    }catch(e){return null;}
+  }
+
+  document.getElementById('submitBtn').addEventListener('click',async function(){
+    var btn=this;
+    if(!tokEl.value.trim()){alert('Nhập token trước đã.');return;}
+    var files=document.getElementById('files').files;
+    if(!files.length){alert('Chọn ít nhất 1 ảnh.');return;}
+    persistTokenIfNeeded();
+    btn.disabled=true;logEl.textContent='';logEl.style.display='block';
+    try{
+      var titleEn=document.getElementById('titleEn').value.trim();
+      var titleVi=document.getElementById('titleVi').value.trim();
+      var slug=slugify(titleEn||titleVi)+'-'+Date.now();
+      log('Chuẩn bị '+files.length+' ảnh...');
+      var imagePaths=[];
+      for(var i=0;i<files.length;i++){
+        log('Xử lý ảnh '+(i+1)+'/'+files.length+'...');
+        var dataUrl=await prepareImage(files[i]);
+        var path='assets/library/img/'+slug+'/'+(i+1)+'.jpg';
+        log('Đang tải lên '+path+'...');
+        await gh('/contents/'+path,{
+          method:'PUT',
+          body:JSON.stringify({message:'Library: add image '+path,content:b64FromDataUrl(dataUrl),branch:BRANCH})
+        });
+        imagePaths.push(path);
+      }
+      log('Cập nhật library.json...');
+      var cur;
+      try{cur=await gh('/contents/'+LIB_PATH+'?ref='+BRANCH);}catch(e){cur=null;}
+      var items=[];
+      var sha=null;
+      if(cur){sha=cur.sha;items=JSON.parse(decodeURIComponent(escape(atob(cur.content.replace(/\n/g,'')))));}
+      var newItem={
+        id:slug,
+        title_en:titleEn,title_vi:titleVi,
+        desc_en:document.getElementById('descEn').value.trim(),
+        desc_vi:document.getElementById('descVi').value.trim(),
+        tag:document.getElementById('tagEn').value.trim(),
+        tag_vi:document.getElementById('tagVi').value.trim(),
+        date:document.getElementById('itemDate').value||null,
+        images:imagePaths
+      };
+      items.unshift(newItem);
+      var newContent=btoa(unescape(encodeURIComponent(JSON.stringify(items,null,2))));
+      var body={message:'Library: add "'+(titleEn||titleVi)+'"',content:newContent,branch:BRANCH};
+      if(sha)body.sha=sha;
+      await gh('/contents/'+LIB_PATH,{method:'PUT',body:JSON.stringify(body)});
+      log('Xong! Mục mới đã lên web (có thể mất 10-30 giây để GitHub Pages cập nhật).');
+      document.getElementById('titleEn').value='';document.getElementById('titleVi').value='';
+      document.getElementById('descEn').value='';document.getElementById('descVi').value='';
+      document.getElementById('tagEn').value='';document.getElementById('tagVi').value='';
+      document.getElementById('itemDate').value='';document.getElementById('files').value='';
+      loadList();
+    }catch(e){
+      log('LỖI: '+e.message);
+      alert('Có lỗi xảy ra, xem log phía dưới.');
+    }finally{
+      btn.disabled=false;
+    }
+  });
+
+  async function loadList(){
+    var listEl=document.getElementById('list');
+    listEl.innerHTML='<p>Đang tải...</p>';
+    try{
+      var r=await fetch('assets/library/library.json?_='+Date.now(),{cache:'no-store'});
+      var items=r.ok?await r.json():[];
+      if(!items.length){listEl.innerHTML='<p>Chưa có mục nào.</p>';return;}
+      listEl.innerHTML=items.map(function(it,i){
+        return '<div class="item">'+
+          '<img src="'+(it.images&&it.images[0]||'')+'" alt="">'+
+          '<div class="meta"><b>'+(it.title_en||it.title_vi||'(no title)')+'</b><span>'+(it.date||'')+'</span>'+
+          (it.tag?'<span class="pill">'+it.tag+'</span>':'')+'</div>'+
+          '<button class="btn danger" data-del="'+i+'" type="button">Xoá</button>'+
+        '</div>';
+      }).join('');
+      listEl.querySelectorAll('[data-del]').forEach(function(b){
+        b.addEventListener('click',function(){deleteItem(+b.getAttribute('data-del'),items);});
+      });
+    }catch(e){
+      listEl.innerHTML='<p>Không tải được danh sách.</p>';
+    }
+  }
+
+  async function deleteItem(idx,items){
+    if(!tokEl.value.trim()){alert('Nhập token trước đã.');return;}
+    if(!confirm('Xoá mục "'+(items[idx].title_en||items[idx].title_vi)+'"? Ảnh đi kèm cũng sẽ bị xoá khỏi repo.'))return;
+    persistTokenIfNeeded();
+    try{
+      var item=items[idx];
+      var cur=await gh('/contents/'+LIB_PATH+'?ref='+BRANCH);
+      var sha=cur.sha;
+      var list=JSON.parse(decodeURIComponent(escape(atob(cur.content.replace(/\n/g,'')))));
+      var realIdx=list.findIndex(function(x){return x.id===item.id});
+      if(realIdx>-1)list.splice(realIdx,1);
+      var newContent=btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2))));
+      await gh('/contents/'+LIB_PATH,{method:'PUT',body:JSON.stringify({message:'Library: remove "'+(item.title_en||item.title_vi)+'"',content:newContent,sha:sha,branch:BRANCH})});
+      for(var i=0;i<(item.images||[]).length;i++){
+        try{
+          var fsha=await getFileSha(item.images[i]);
+          if(fsha)await gh('/contents/'+item.images[i],{method:'DELETE',body:JSON.stringify({message:'Library: remove image',sha:fsha,branch:BRANCH})});
+        }catch(e){}
+      }
+      loadList();
+    }catch(e){
+      alert('Không xoá được: '+e.message);
+    }
+  }
+
+  loadList();
+})();
+</script>
+</body>
+</html>

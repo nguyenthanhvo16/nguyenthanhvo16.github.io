@@ -240,6 +240,14 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 .lb img{max-width:min(1200px,100%);max-height:80vh;border-radius:10px;object-fit:contain}
 .lb p{color:var(--muted);font-size:14px;max-width:760px;text-align:center}
 .lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:20px}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);right:auto;left:16px;width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:22px}
+.lb-nav.lb-next{left:auto;right:16px}
+.lib-count{position:absolute;bottom:18px;right:22px;color:var(--muted);font-size:13px}
+#libImg{-webkit-user-drag:none;user-select:none}
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.lib-card{cursor:pointer}
+.lib-thumb{aspect-ratio:4/3;margin-bottom:14px}
+.lib-empty{color:var(--muted);font-size:15px}
 
 /* MOTION */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
@@ -268,6 +276,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       <a href="#think" data-vi="Cách nghĩ">How I think</a>
       <a href="#work" data-vi="Dự án">Work</a>
       <a href="#about" data-vi="Về mình">About</a>
+      <a href="#library" data-vi="Thư viện">Library</a>
     </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Language">
@@ -576,6 +585,16 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
   </div>
 </section>
 
+<!-- LIBRARY -->
+<section id="library">
+  <div class="wrap">
+    <span class="eyebrow reveal" data-vi="Thư viện">Library</span>
+    <h2 class="reveal" data-vi="Giáo án &amp; kế hoạch mình đã làm">Training decks &amp; plans I've built</h2>
+    <p class="reveal" style="color:var(--muted);margin-top:10px;max-width:640px" data-vi="Xem trực tiếp trên trang — bấm vào để mở, không hỗ trợ tải xuống.">View directly on this page — click to open. Not available for download.</p>
+    <div class="lib-grid" id="libGrid" style="margin-top:32px"></div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact" class="contact">
   <div class="wrap">
@@ -598,6 +617,15 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
   <button type="button" id="lbClose" aria-label="Close">×</button>
   <img id="lbImg" alt="">
   <p id="lbCap"></p>
+</div>
+
+<div class="lb" id="liblb" role="dialog" aria-modal="true" aria-label="Library viewer">
+  <button type="button" id="libClose" aria-label="Close">×</button>
+  <button type="button" id="libPrev" class="lb-nav lb-prev" aria-label="Previous">‹</button>
+  <button type="button" id="libNext" class="lb-nav lb-next" aria-label="Next">›</button>
+  <img id="libImg" alt="" draggable="false">
+  <p id="libCap"></p>
+  <span id="libCount" class="lib-count"></span>
 </div>
 
 <script>
@@ -659,6 +687,59 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
   function close(){lb.classList.remove('open');lbImg.src='';}
   lb.addEventListener('click',function(e){if(e.target!==lbImg)close()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
+
+  /* Library */
+  (function(){
+    var grid=document.getElementById('libGrid');
+    if(!grid)return;
+    function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+    function curLang(){return document.documentElement.lang==='vi'?'vi':'en'}
+    fetch('assets/library/library.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).catch(function(){return []}).then(function(items){render(Array.isArray(items)?items:[])});
+    function render(items){
+      if(!items.length){
+        grid.innerHTML='<p class="lib-empty" data-vi="Chưa có tài liệu nào ở đây. Sẽ cập nhật sớm.">Nothing here yet — more coming soon.</p>';
+        grid.querySelectorAll('[data-vi]').forEach(function(el){el.setAttribute('data-en',el.innerHTML);if(curLang()==='vi')el.innerHTML=el.getAttribute('data-vi')});
+        return;
+      }
+      grid.innerHTML=items.map(function(it,i){
+        var cover=(it.images&&it.images[0])||'';
+        return '<div class="card lib-card" data-idx="'+i+'" tabindex="0" role="button">'+
+          '<div class="shot contain lib-thumb"><img src="'+esc(cover)+'" alt="" loading="lazy"></div>'+
+          (it.tag?'<span class="tag" data-vi="'+esc(it.tag_vi||it.tag)+'">'+esc(it.tag)+'</span>':'')+
+          '<h4 data-vi="'+esc(it.title_vi||it.title_en||'')+'">'+esc(it.title_en||it.title_vi||'')+'</h4>'+
+          '<p data-vi="'+esc(it.desc_vi||'')+'">'+esc(it.desc_en||'')+'</p>'+
+        '</div>';
+      }).join('');
+      grid.querySelectorAll('[data-vi]').forEach(function(el){el.setAttribute('data-en',el.innerHTML);if(curLang()==='vi')el.innerHTML=el.getAttribute('data-vi')});
+      grid.querySelectorAll('.lib-card').forEach(function(card){
+        var open=function(){openLib(items[+card.getAttribute('data-idx')])};
+        card.addEventListener('click',open);
+        card.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}});
+      });
+    }
+    var liblb=document.getElementById('liblb'),libImg=document.getElementById('libImg'),libCap=document.getElementById('libCap'),libCount=document.getElementById('libCount');
+    var curItem=null,curIdx=0;
+    function showSlide(){
+      if(!curItem)return;
+      var imgs=curItem.images||[];
+      libImg.src=imgs[curIdx]||'';
+      libCount.textContent=imgs.length?((curIdx+1)+' / '+imgs.length):'';
+      libCap.textContent=curLang()==='vi'?(curItem.title_vi||curItem.title_en||''):(curItem.title_en||curItem.title_vi||'');
+    }
+    function openLib(item){curItem=item;curIdx=0;showSlide();liblb.classList.add('open');document.getElementById('libClose').focus();}
+    function closeLib(){liblb.classList.remove('open');libImg.src='';curItem=null;}
+    document.getElementById('libClose').addEventListener('click',closeLib);
+    document.getElementById('libPrev').addEventListener('click',function(e){e.stopPropagation();if(!curItem)return;var n=(curItem.images||[]).length;if(!n)return;curIdx=(curIdx-1+n)%n;showSlide();});
+    document.getElementById('libNext').addEventListener('click',function(e){e.stopPropagation();if(!curItem)return;var n=(curItem.images||[]).length;if(!n)return;curIdx=(curIdx+1)%n;showSlide();});
+    liblb.addEventListener('click',function(e){if(e.target===liblb)closeLib()});
+    document.addEventListener('keydown',function(e){
+      if(!liblb.classList.contains('open'))return;
+      if(e.key==='Escape')closeLib();
+      if(e.key==='ArrowLeft')document.getElementById('libPrev').click();
+      if(e.key==='ArrowRight')document.getElementById('libNext').click();
+    });
+    libImg.addEventListener('contextmenu',function(e){e.preventDefault()});
+  })();
 
   /* Reveal */
   var els=document.querySelectorAll('.reveal');
