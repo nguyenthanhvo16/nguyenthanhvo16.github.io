@@ -256,19 +256,10 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 .swapping [data-vi]{opacity:0}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.tabpanel{animation:none}.card,.btn,[data-vi],.shot img{transition:none}}
 @media(min-width:760px){:root{--gutter:40px}section{padding:128px 0}}
-.side{display:grid;gap:36px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:32px;margin-top:8px}
-@media(min-width:900px){.side{grid-template-columns:1.25fr 1fr;gap:48px;padding:44px}}
-.side h3{font-size:clamp(26px,3.2vw,34px);margin:6px 0 14px}
-.side .chips{margin:20px 0 28px}
-.side-why{margin-top:16px;padding-left:16px;border-left:1px solid var(--accent-deep);font-size:15px}
-.side-wheel{display:flex;justify-content:center}
-.side-wheel svg{width:min(280px,70vw);height:auto}
-.side-wheel path{fill:var(--accent);transition:fill-opacity .3s}
-.side:hover .side-wheel path:nth-child(odd){fill-opacity:.9}
 </style>
 <!-- Google Analytics (GA4) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-M06VMBBMLH"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -287,7 +278,6 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       <a href="#work" data-vi="Dự án">Work</a>
       <a href="#about" data-vi="Về mình">About</a>
       <a href="#library" data-vi="Thư viện">Library</a>
-      <a href="#side" data-vi="Dự án cá nhân">Side project</a>
     </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Language">
@@ -603,28 +593,14 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
     <h2 class="reveal" data-vi="Giáo án &amp; kế hoạch mình đã làm">Training decks &amp; plans I've built</h2>
     <p class="reveal" style="color:var(--muted);margin-top:10px;max-width:640px" data-vi="Xem trực tiếp trên trang — bấm vào để mở, không hỗ trợ tải xuống.">View directly on this page — click to open. Not available for download.</p>
     <div class="lib-grid" id="libGrid" style="margin-top:32px"></div>
-  </div>
-</section>
 
-<!-- SIDE PROJECT -->
-<section id="side" class="alt">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow" data-vi="Dự án cá nhân">Side project</span>
-      <h2 data-vi="3 phút nhìn lại 9 mặt của cuộc sống.">A 3-minute check-in on nine sides of life.</h2>
-    </div>
-    <article class="side reveal">
-      <div>
-        <h3>Mức Độ Hạnh Phúc Tự Thân</h3>
-        <p data-vi="Công cụ tự nhìn lại dựa trên khung 9 lĩnh vực Tổng Hạnh phúc Quốc gia (GNH). Tự chấm 1–10 cho từng lĩnh vực, xem bánh xe của mình và nhận 2 ưu tiên để bắt đầu.">A self-reflection tool built on the nine domains of Gross National Happiness (GNH). Score each domain 1–10, see your own wheel, and get two priorities to start with.</p>
-        <p class="side-why" data-vi="Vì sao nó nằm ở đây: trải nghiệm của một người không dừng lại lúc tan làm. Vẫn là tư duy lắng nghe, chỉ là áp cho cả con người.">Why it sits in my portfolio: experience doesn't stop when the workday ends. Same listening mindset, applied to the whole person.</p>
-        <div class="chips">
-          <span class="chip" data-vi="9 lĩnh vực GNH">9 GNH domains</span><span class="chip" data-vi="3 phút">3 minutes</span><span class="chip" data-vi="Ẩn danh">Anonymous</span><span class="chip" data-vi="Tiếng Việt">Vietnamese</span>
-        </div>
-        <a class="btn btn-primary" href="https://hanh-phuc-tu-than.netlify.app/?src=portfolio" target="_blank" rel="noopener" data-vi="Làm thử <span aria-hidden='true'>↗</span>">Try it <span aria-hidden="true">↗</span></a>
+    <div class="card reveal" style="margin-top:28px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+      <div style="max-width:640px">
+        <h4 data-vi="Hạnh phúc tự thân — công cụ tự đánh giá">Hạnh phúc tự thân — self-assessment tool</h4>
+        <p data-vi="Web mình tự xây để mỗi người tự đánh giá mức độ hạnh phúc theo 9 lĩnh vực GNH, kèm gợi ý cải thiện.">A web app I built so anyone can self-assess their happiness across the 9 GNH domains, with suggestions to improve.</p>
       </div>
-      <div class="side-wheel"><svg viewBox="0 0 240 240" aria-hidden="true"><circle cx="120" cy="120" r="112" fill="none" stroke="var(--line-2)" stroke-dasharray="3 5"/><path d="M114.2 100.9L93.5 33.3A90.6 90.6 0 0 1 146.5 33.3L125.8 100.9A20 20 0 0 0 114.2 100.9Z" fill-opacity="0.55"/><path d="M127.8 101.6L160.2 25.2A103.0 103.0 0 0 1 206.3 63.9L136.8 109.1A20 20 0 0 0 127.8 101.6Z" fill-opacity="0.8"/><path d="M137.8 110.9L186.6 86.0A74.8 74.8 0 0 1 194.2 129.1L139.9 122.4A20 20 0 0 0 137.8 110.9Z" fill-opacity="0.4"/><path d="M139.5 124.5L201.5 138.8A83.6 83.6 0 0 1 177.0 181.1L133.6 134.6A20 20 0 0 0 139.5 124.5Z" fill-opacity="0.62"/><path d="M132.0 136.0L165.0 179.7A74.8 74.8 0 0 1 123.9 194.7L121.0 140.0A20 20 0 0 0 132.0 136.0Z" fill-opacity="0.35"/><path d="M119.0 140.0L114.3 228.1A108.2 108.2 0 0 1 54.9 206.4L108.0 136.0A20 20 0 0 0 119.0 140.0Z" fill-opacity="0.9"/><path d="M106.4 134.6L60.6 183.7A87.1 87.1 0 0 1 35.1 139.6L100.5 124.5A20 20 0 0 0 106.4 134.6Z" fill-opacity="0.5"/><path d="M100.1 122.4L56.2 127.8A64.2 64.2 0 0 1 62.8 90.8L102.2 110.9A20 20 0 0 0 100.1 122.4Z" fill-opacity="0.3"/><path d="M103.2 109.1L61.7 82.1A69.5 69.5 0 0 1 92.8 56.0L112.2 101.6A20 20 0 0 0 103.2 109.1Z" fill-opacity="0.45"/><circle cx="120" cy="120" r="9" fill="var(--bg)" stroke="var(--accent)" stroke-width="2"/></svg></div>
-    </article>
+      <a href="https://hanh-phuc-tu-than.netlify.app/" target="_blank" rel="noopener" class="btn btn-primary" onclick="typeof gtag==='function'&&gtag('event','click_try_hanh_phuc',{link_url:'https://hanh-phuc-tu-than.netlify.app/'})"><span data-vi="Dùng thử">Try it</span> <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
 </section>
 
@@ -752,7 +728,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       });
     }
     var liblb=document.getElementById('liblb'),libImg=document.getElementById('libImg'),libCanvas=document.getElementById('libCanvas'),libCap=document.getElementById('libCap'),libCount=document.getElementById('libCount');
-    if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+    if(window.pdfjsLib)pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     var curItem=null,curIdx=0,curPdf=null,pdfPages=0,renderTok=0;
     function pageCount(){return curItem&&curItem.pdf?pdfPages:(curItem&&curItem.images||[]).length;}
     function renderPdfPage(n){
@@ -783,6 +759,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       libCap.textContent=curLang()==='vi'?(curItem.title_vi||curItem.title_en||''):(curItem.title_en||curItem.title_vi||'');
     }
     function openLib(item){
+      try{if(typeof gtag==='function')gtag('event','library_open',{item_title:item.title_en||item.title_vi||item.id,item_id:item.id,format:item.pdf?'pdf':'images'});}catch(e){}
       curItem=item;curIdx=0;curPdf=null;pdfPages=0;
       liblb.classList.add('open');document.getElementById('libClose').focus();
       if(item.pdf&&window.pdfjsLib){
