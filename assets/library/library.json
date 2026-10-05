@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "id": "control-angry-1791191260787",
+    "title_en": "Control Angry",
+    "title_vi": "Giận mà không Dữ",
+    "desc_en": "How to overcome angry mood",
+    "desc_vi": "Làm sao để giận mà không dữ",
+    "tag": "Soft Skill",
+    "tag_vi": "Kỹ năng mềm",
+    "date": "2026-10-05",
+    "images": [
+      "assets/library/img/control-angry-1791191260787/cover.jpg"
+    ],
+    "pdf": "assets/library/pdf/control-angry-1791191260787/doc.pdf"
+  }
+]
