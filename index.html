@@ -240,13 +240,27 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 .lb img{max-width:min(1200px,100%);max-height:80vh;border-radius:10px;object-fit:contain}
 .lb p{color:var(--muted);font-size:14px;max-width:760px;text-align:center}
 .lb button{position:absolute;top:16px;right:16px;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:20px}
-.lb-nav{position:absolute;top:50%;transform:translateY(-50%);right:auto;left:16px;width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:22px}
-.lb-nav.lb-next{left:auto;right:16px}
-.lib-count{position:absolute;bottom:18px;right:22px;color:var(--muted);font-size:13px}
+.lb button.lb-nav{position:absolute;top:auto;bottom:22px;right:auto;width:48px;height:48px;border-radius:50%;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-size:22px}
+.lb button.lb-prev{left:calc(50% - 84px)}
+.lb button.lb-next{left:calc(50% + 36px)}
+.lib-count{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);color:var(--muted);font-size:13px;white-space:nowrap}
+#liblb{padding-bottom:96px}
+#liblb img,#liblb canvas{max-height:calc(100vh - 210px)!important}
 #libImg{-webkit-user-drag:none;user-select:none}
 .lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
 .lib-card{cursor:pointer}
 .lib-thumb{aspect-ratio:4/3;margin-bottom:14px}
+.feat{margin-top:32px;padding:0;overflow:hidden;background:#f0f3ec;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);text-align:center;color:#1f2d26}
+.feat:hover{transform:none;background:#f0f3ec;border-color:rgba(255,255,255,.14)}
+.feat img.feat-hero{width:100%;height:auto;display:block}
+.feat .feat-body{padding:6px 24px 44px;margin-top:-6px}
+.feat .feat-eyebrow{display:block;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#3f7a58;margin-bottom:14px}
+.feat h3{font-family:var(--serif);font-weight:400;font-size:clamp(34px,5vw,54px);line-height:1.12;color:#1c2a22;margin-bottom:16px}
+.feat h3 em{display:block;font-style:italic;color:#3f7a58}
+.feat p{font-size:17px;max-width:620px;margin:0 auto 28px;color:#4a5a51}
+.feat .btn{background:#2f6a4a;color:#fff}
+.feat .btn:hover{background:#25573c}
+.lib-sub{font-family:var(--serif);font-weight:400;font-size:24px;margin-top:56px;color:var(--text)}
 .lib-empty{color:var(--muted);font-size:15px}
 
 /* MOTION */
@@ -277,7 +291,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       <a href="#think" data-vi="Cách nghĩ">How I think</a>
       <a href="#work" data-vi="Dự án">Work</a>
       <a href="#about" data-vi="Về mình">About</a>
-      <a href="#library" data-vi="Thư viện">Library</a>
+      <a href="#library" data-vi="Sản phẩm">Tools &amp; Training</a>
     </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Language">
@@ -586,21 +600,27 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
   </div>
 </section>
 
-<!-- LIBRARY -->
+<!-- TOOLS & TRAINING -->
 <section id="library">
   <div class="wrap">
-    <span class="eyebrow reveal" data-vi="Thư viện">Library</span>
-    <h2 class="reveal" data-vi="Giáo án &amp; kế hoạch mình đã làm">Training decks &amp; plans I've built</h2>
-    <p class="reveal" style="color:var(--muted);margin-top:10px;max-width:640px" data-vi="Xem trực tiếp trên trang — bấm vào để mở, không hỗ trợ tải xuống.">View directly on this page — click to open. Not available for download.</p>
-    <div class="lib-grid" id="libGrid" style="margin-top:32px"></div>
+    <span class="eyebrow reveal" data-vi="Sản phẩm &amp; Giáo án">Tools &amp; Training</span>
+    <h2 class="reveal" data-vi="Thứ mình tự xây, và thứ mình đứng lớp.">Things I've built, and things I've taught.</h2>
 
-    <div class="card reveal" style="margin-top:28px;display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
-      <div style="max-width:640px">
-        <h4 data-vi="Hạnh phúc tự thân — công cụ tự đánh giá">Hạnh phúc tự thân — self-assessment tool</h4>
-        <p data-vi="Web mình tự xây để mỗi người tự đánh giá mức độ hạnh phúc theo 9 lĩnh vực GNH, kèm gợi ý cải thiện.">A web app I built so anyone can self-assess their happiness across the 9 GNH domains, with suggestions to improve.</p>
+    <!-- FEATURED -->
+    <div class="card reveal feat">
+      <img class="feat-hero" src="assets/hanh-phuc-hero.jpg" alt="" loading="lazy">
+      <div class="feat-body">
+        <span class="feat-eyebrow" data-vi="Khung 9 lĩnh vực · GNH">9-domain framework · GNH</span>
+        <h3 data-vi="Mức độ hạnh phúc <em>tự thân</em>">Self-assessed <em>happiness</em></h3>
+        <p data-vi="Web mình tự xây: cho bản thân 3 phút, nhìn lại 9 mặt của cuộc sống và xem dạo này mình đang thế nào. Có chẩn đoán và gợi ý cải thiện, miễn phí.">A web app I built: give yourself 3 minutes, look back at 9 areas of your life and see how you're doing. With a diagnosis and suggestions to improve. Free.</p>
+        <a href="https://hanh-phuc-tu-than.netlify.app/" target="_blank" rel="noopener" class="btn btn-primary" onclick="typeof gtag==='function'&&gtag('event','click_try_hanh_phuc',{link_url:'https://hanh-phuc-tu-than.netlify.app/'})"><span data-vi="Bắt đầu tự đánh giá">Start the self-assessment</span> <span aria-hidden="true">→</span></a>
       </div>
-      <a href="https://hanh-phuc-tu-than.netlify.app/" target="_blank" rel="noopener" class="btn btn-primary" onclick="typeof gtag==='function'&&gtag('event','click_try_hanh_phuc',{link_url:'https://hanh-phuc-tu-than.netlify.app/'})"><span data-vi="Dùng thử">Try it</span> <span aria-hidden="true">↗</span></a>
     </div>
+
+    <!-- GALLERY -->
+    <h3 class="reveal lib-sub" data-vi="Giáo án &amp; kế hoạch">Training decks &amp; plans</h3>
+    <p class="reveal" style="color:var(--muted);margin-top:6px;max-width:640px" data-vi="Xem trực tiếp trên trang — bấm vào để mở, không hỗ trợ tải xuống.">View directly on this page — click to open. Not available for download.</p>
+    <div class="lib-grid" id="libGrid" style="margin-top:24px"></div>
   </div>
 </section>
 
@@ -736,7 +756,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       var tok=++renderTok;
       curPdf.getPage(n).then(function(page){
         if(tok!==renderTok)return;
-        var vw=Math.min(window.innerWidth*0.9,1200),vh=window.innerHeight*0.8;
+        var vw=Math.min(window.innerWidth*0.9,1200),vh=window.innerHeight-210;
         var base=page.getViewport({scale:1});
         var scale=Math.min(vw/base.width,vh/base.height);
         var viewport=page.getViewport({scale:scale});
