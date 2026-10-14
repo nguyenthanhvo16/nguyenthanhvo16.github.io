@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<title>Library Admin — nguyenthanhvo16.github.io</title>
+<title>Admin — nguyenthanhvo16.github.io</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500&display=swap" rel="stylesheet">
@@ -121,6 +121,26 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
   <div class="box">
     <div id="list"><p>Đang tải...</p></div>
   </div>
+
+  <h2>4. Giải thưởng (hiện thành dải ngang trên mục Tools &amp; Training)</h2>
+  <div class="box">
+    <div class="row">
+      <div><label>Tên giải (EN)</label><input type="text" id="awTitleEn" placeholder="e.g. Second Prize, Writing Contest"></div>
+      <div><label>Tên giải (VI)</label><input type="text" id="awTitleVi" placeholder="VD: Giải Nhì cuộc thi viết"></div>
+    </div>
+    <div class="row">
+      <div><label>Đơn vị tổ chức (EN) — tuỳ chọn</label><input type="text" id="awOrgEn"></div>
+      <div><label>Đơn vị tổ chức (VI) — tuỳ chọn</label><input type="text" id="awOrgVi"></div>
+    </div>
+    <label>Năm</label>
+    <input type="text" id="awYear" placeholder="2026">
+    <label>Hình ảnh (giấy khen / ảnh nhận giải)</label>
+    <input type="file" id="awFile" accept="image/*">
+    <button class="btn" id="awSubmit" type="button">Tải lên &amp; Đăng giải thưởng</button>
+    <div id="awLog" style="white-space:pre-wrap;font-family:monospace;font-size:12.5px;color:var(--muted);margin-top:12px"></div>
+  </div>
+  <h2>5. Giải thưởng hiện có</h2>
+  <div class="box"><div id="awList"><p>Đang tải...</p></div></div>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -377,6 +397,69 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
       alert('Không xoá được: '+e.message);
     }
   }
+
+  /* ===== Awards ===== */
+  var AW_PATH='assets/awards/awards.json';
+  function awLog(m){var e=document.getElementById('awLog');e.textContent+=m+'\n';}
+  function readJson(cur){return JSON.parse(decodeURIComponent(escape(atob(cur.content.replace(/\n/g,'')))));}
+  function escH(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+  document.getElementById('awSubmit').addEventListener('click',async function(){
+    var btn=this;
+    if(!tokEl.value.trim()){alert('Nhập token trước đã.');return;}
+    var f=document.getElementById('awFile').files[0];
+    var tEn=document.getElementById('awTitleEn').value.trim(),tVi=document.getElementById('awTitleVi').value.trim();
+    if(!tEn&&!tVi){alert('Nhập tên giải.');return;}
+    if(!f){alert('Chọn 1 hình ảnh.');return;}
+    persistTokenIfNeeded();
+    btn.disabled=true;document.getElementById('awLog').textContent='';
+    try{
+      var id=slugify(tEn||tVi)+'-'+Date.now();
+      awLog('Xử lý ảnh...');
+      var dataUrl=await prepareImage(f);
+      var imgPath='assets/awards/img/'+id+'.jpg';
+      awLog('Tải ảnh lên...');
+      await gh('/contents/'+imgPath,{method:'PUT',body:JSON.stringify({message:'Awards: add image '+imgPath,content:b64FromDataUrl(dataUrl),branch:BRANCH})});
+      awLog('Cập nhật awards.json...');
+      var cur=null;try{cur=await gh('/contents/'+AW_PATH+'?ref='+BRANCH);}catch(e){}
+      var items=cur?readJson(cur):[];
+      items.unshift({id:id,title_en:tEn,title_vi:tVi,org_en:document.getElementById('awOrgEn').value.trim(),org_vi:document.getElementById('awOrgVi').value.trim(),year:document.getElementById('awYear').value.trim(),image:imgPath});
+      var body={message:'Awards: add "'+(tEn||tVi)+'"',content:btoa(unescape(encodeURIComponent(JSON.stringify(items,null,2)))),branch:BRANCH};
+      if(cur)body.sha=cur.sha;
+      await gh('/contents/'+AW_PATH,{method:'PUT',body:JSON.stringify(body)});
+      awLog('Xong! Giải thưởng sẽ hiện trên web sau 10-30 giây.');
+      ['awTitleEn','awTitleVi','awOrgEn','awOrgVi','awYear','awFile'].forEach(function(i){document.getElementById(i).value=''});
+      loadAwards();
+    }catch(e){awLog('LỖI: '+e.message);alert('Có lỗi xảy ra, xem log.');}
+    finally{btn.disabled=false;}
+  });
+  async function loadAwards(){
+    var el=document.getElementById('awList');
+    try{
+      var r=await fetch(AW_PATH+'?_='+Date.now(),{cache:'no-store'});
+      var items=r.ok?await r.json():[];
+      if(!items.length){el.innerHTML='<p>Chưa có giải thưởng nào.</p>';return;}
+      el.innerHTML=items.map(function(it,i){
+        return '<div class="item"><img src="'+escH(it.image)+'" alt=""><div class="meta"><b>'+escH(it.title_en||it.title_vi)+'</b><span>'+escH(it.year||'')+'</span></div><button class="btn danger" data-awdel="'+i+'" type="button">Xoá</button></div>';
+      }).join('');
+      el.querySelectorAll('[data-awdel]').forEach(function(b){b.addEventListener('click',function(){delAward(+b.getAttribute('data-awdel'),items)})});
+    }catch(e){el.innerHTML='<p>Không tải được danh sách.</p>';}
+  }
+  async function delAward(idx,items){
+    if(!tokEl.value.trim()){alert('Nhập token trước đã.');return;}
+    var it=items[idx];
+    if(!confirm('Xoá giải "'+(it.title_en||it.title_vi)+'"?'))return;
+    persistTokenIfNeeded();
+    try{
+      var cur=await gh('/contents/'+AW_PATH+'?ref='+BRANCH);
+      var list=readJson(cur);
+      var k=list.findIndex(function(x){return x.id===it.id});
+      if(k>-1)list.splice(k,1);
+      await gh('/contents/'+AW_PATH,{method:'PUT',body:JSON.stringify({message:'Awards: remove "'+(it.title_en||it.title_vi)+'"',content:btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2)))),sha:cur.sha,branch:BRANCH})});
+      try{var fs=await getFileSha(it.image);if(fs)await gh('/contents/'+it.image,{method:'DELETE',body:JSON.stringify({message:'Awards: remove image',sha:fs,branch:BRANCH})});}catch(e){}
+      loadAwards();
+    }catch(e){alert('Không xoá được: '+e.message);}
+  }
+  loadAwards();
 
   loadList();
 })();
