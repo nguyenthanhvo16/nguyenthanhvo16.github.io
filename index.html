@@ -277,7 +277,8 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 .feat2 .feat-body{padding:48px 24px 44px;margin-top:0}
 .feat2{margin-top:20px}
 .feat2 h3{font-size:clamp(30px,4.4vw,46px)}
-.aw-strip{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(210px,230px);gap:16px;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 2px 14px;margin-top:26px;scrollbar-width:thin;scrollbar-color:var(--line-2) transparent}
+.aw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.aw-empty{display:none;color:var(--muted)}
 .aw{scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column}
 .aw-img{aspect-ratio:4/3;background:var(--surface-2);cursor:zoom-in}
 .aw-img img{width:100%;height:100%;object-fit:cover;display:block}
@@ -393,6 +394,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       <a href="#believe" data-vi="Niềm tin">Beliefs</a>
       <a href="#think" data-vi="Cách nghĩ">How I think</a>
       <a href="#work" data-vi="Dự án">Work</a>
+      <a href="#awards" data-vi="Giải thưởng">Awards</a>
       <a href="#about" data-vi="Về mình">About</a>
       <a href="#library" data-vi="Sản phẩm">Tools &amp; Training</a>
     </nav>
@@ -484,6 +486,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 
     <div class="tabs" role="tablist" aria-label="Work">
       <button class="tab" role="tab" id="t-bring" aria-controls="p-bring" aria-selected="true" data-vi="Giá trị mình mang lại">What I bring</button>
+      <button class="tab" role="tab" id="t-awards" aria-controls="p-awards" aria-selected="false" data-vi="Giải thưởng">Awards</button>
       <button class="tab" role="tab" id="t-cases" aria-controls="p-cases" aria-selected="false" data-vi="Case đặc sắc">Signature cases</button>
       <button class="tab" role="tab" id="t-restaff" aria-controls="p-restaff" aria-selected="false">Restaff <small>2024–26</small></button>
       <button class="tab" role="tab" id="t-zafago" aria-controls="p-zafago" aria-selected="false">Zafago <small>2023–24</small></button>
@@ -504,6 +507,12 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       <div class="chips">
         <span class="chip" style="font-weight:600"><b data-vi="Thiết kế Đào tạo">Training Design</b></span><span class="chip" style="font-weight:600"><b data-vi="Đứng lớp / Facilitation">Facilitation / Đứng lớp</b></span><span class="chip" style="font-weight:600"><b data-vi="Đào tạo Kỹ năng mềm &amp; Onboarding">Soft-skills &amp; Onboarding Training</b></span><span class="chip">Internal Communications</span><span class="chip">Content &amp; Storytelling</span><span class="chip">Employee Engagement</span><span class="chip">Culture Development</span><span class="chip">Event Management (solo + agency)</span><span class="chip">Employer Branding / EVP</span><span class="chip">Employee Listening &amp; Survey</span><span class="chip">Data &amp; Reporting</span><span class="chip">Stakeholder Management</span><span class="chip">Change Communication</span><span class="chip">Canva</span><span class="chip">AI Tools</span><span class="chip">Microsoft 365</span>
       </div>
+    </div>
+
+    <!-- TAB AWARDS -->
+    <div class="tabpanel" role="tabpanel" id="p-awards" aria-labelledby="t-awards" hidden>
+      <div class="aw-grid" id="awStrip"></div>
+      <p class="aw-empty" id="awEmpty" data-vi="Sẽ cập nhật sớm.">Coming soon.</p>
     </div>
 
     <!-- TAB 2 -->
@@ -704,15 +713,6 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- AWARDS -->
-<section id="awards" hidden style="padding-bottom:0">
-  <div class="wrap">
-    <span class="eyebrow reveal" data-vi="Giải thưởng">Awards</span>
-    <h2 class="reveal" data-vi="Những lần được ghi nhận.">Moments of recognition.</h2>
-    <div class="aw-strip reveal" id="awStrip"></div>
   </div>
 </section>
 
@@ -939,11 +939,11 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
 
   /* Awards */
   (function(){
-    var sec=document.getElementById('awards'),strip=document.getElementById('awStrip');
-    if(!sec||!strip)return;
+    var strip=document.getElementById('awStrip'),empty=document.getElementById('awEmpty');
+    if(!strip)return;
     function esc(s){return (s==null?'':String(s)).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
     fetch('assets/awards/awards.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).catch(function(){return []}).then(function(items){
-      if(!Array.isArray(items)||!items.length)return;
+      if(!Array.isArray(items)||!items.length){if(empty)empty.style.display='block';return;}
       strip.innerHTML=items.map(function(it){
         return '<div class="aw">'+
           '<div class="aw-img">'+(it.image?'<img src="'+esc(it.image)+'" alt="'+esc(it.title_en||it.title_vi)+'" loading="lazy">':'')+'</div>'+
@@ -957,9 +957,12 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       strip.querySelectorAll('.aw-img img').forEach(function(img){
         img.addEventListener('click',function(){var l=document.getElementById('lb'),li=document.getElementById('lbImg'),lc=document.getElementById('lbCap');li.src=img.src;li.alt=img.alt;lc.textContent=img.alt;l.classList.add('open');document.getElementById('lbClose').focus();});
       });
-      sec.hidden=false;
     });
   })();
+
+  function openAwards(){var ta=document.getElementById('t-awards');if(!ta)return;ta.click();var w=document.getElementById('work');if(w)window.scrollTo({top:w.getBoundingClientRect().top+window.scrollY-40,behavior:'smooth'})}
+  if(location.hash==='#awards')setTimeout(openAwards,150);
+  document.querySelectorAll('a[href="#awards"]').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();history.replaceState(null,'','#awards');openAwards()})});
 
   /* Visual: icons + expandable */
   (function(){

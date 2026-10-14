@@ -176,12 +176,26 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
     headers['Authorization']='Bearer '+tokEl.value.trim();
     headers['Accept']='application/vnd.github+json';
     opts.headers=headers;
-    return fetch(API+path,opts).then(function(r){
+    var url=API+path;
+    if(!opts.method||opts.method==='GET'){url+=(url.indexOf('?')>-1?'&':'?')+'_='+Date.now();opts.cache='no-store';}
+    return fetch(url,opts).then(function(r){
       if(!r.ok)return r.text().then(function(t){throw new Error(r.status+' '+t)});
       return r.status===204?null:r.json();
     });
   }
 
+  // read-modify-write a JSON file with retry on SHA conflict (409)
+  async function rmwJson(path,mutate,message){
+    for(var a=0;a<5;a++){
+      var cur=null;try{cur=await gh('/contents/'+path+'?ref='+BRANCH);}catch(e){cur=null;}
+      var list=cur?JSON.parse(decodeURIComponent(escape(atob(cur.content.replace(/\n/g,''))))):[];
+      list=mutate(list)||list;
+      var body={message:message,content:btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2)))),branch:BRANCH};
+      if(cur)body.sha=cur.sha;
+      try{await gh('/contents/'+path,{method:'PUT',body:JSON.stringify(body)});return list;}
+      catch(e){if(String(e.message).indexOf('409')===0&&a<4){await new Promise(function(r){setTimeout(r,2000)});continue;}throw e;}
+    }
+  }
   function b64FromDataUrl(dataUrl){return dataUrl.split(',')[1];}
 
   // Resize/compress an image file client-side before upload, to keep it well under GitHub's Contents API size limit.
@@ -308,11 +322,6 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
         }
       }
       log('Cập nhật library.json...');
-      var cur;
-      try{cur=await gh('/contents/'+LIB_PATH+'?ref='+BRANCH);}catch(e){cur=null;}
-      var items=[];
-      var sha=null;
-      if(cur){sha=cur.sha;items=JSON.parse(decodeURIComponent(escape(atob(cur.content.replace(/\n/g,'')))));}
       var newItem={
         id:slug,
         title_en:titleEn,title_vi:titleVi,
@@ -324,11 +333,7 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
         images:imagePaths
       };
       if(pdfPath)newItem.pdf=pdfPath;
-      items.unshift(newItem);
-      var newContent=btoa(unescape(encodeURIComponent(JSON.stringify(items,null,2))));
-      var body={message:'Library: add "'+(titleEn||titleVi)+'"',content:newContent,branch:BRANCH};
-      if(sha)body.sha=sha;
-      await gh('/contents/'+LIB_PATH,{method:'PUT',body:JSON.stringify(body)});
+      await rmwJson(LIB_PATH,function(items){items.unshift(newItem);return items;},'Library: add "'+(titleEn||titleVi)+'"');
       log('Xong! Mục mới đã lên web (có thể mất 10-30 giây để GitHub Pages cập nhật).');
       document.getElementById('titleEn').value='';document.getElementById('titleVi').value='';
       document.getElementById('descEn').value='';document.getElementById('descVi').value='';
@@ -373,13 +378,7 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
     persistTokenIfNeeded();
     try{
       var item=items[idx];
-      var cur=await gh('/contents/'+LIB_PATH+'?ref='+BRANCH);
-      var sha=cur.sha;
-      var list=JSON.parse(decodeURIComponent(escape(atob(cur.content.replace(/\n/g,'')))));
-      var realIdx=list.findIndex(function(x){return x.id===item.id});
-      if(realIdx>-1)list.splice(realIdx,1);
-      var newContent=btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2))));
-      await gh('/contents/'+LIB_PATH,{method:'PUT',body:JSON.stringify({message:'Library: remove "'+(item.title_en||item.title_vi)+'"',content:newContent,sha:sha,branch:BRANCH})});
+      await rmwJson(LIB_PATH,function(list){var k=list.findIndex(function(x){return x.id===item.id});if(k>-1)list.splice(k,1);return list;},'Library: remove "'+(item.title_en||item.title_vi)+'"');
       for(var i=0;i<(item.images||[]).length;i++){
         try{
           var fsha=await getFileSha(item.images[i]);
@@ -420,12 +419,7 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
       awLog('Tải ảnh lên...');
       await gh('/contents/'+imgPath,{method:'PUT',body:JSON.stringify({message:'Awards: add image '+imgPath,content:b64FromDataUrl(dataUrl),branch:BRANCH})});
       awLog('Cập nhật awards.json...');
-      var cur=null;try{cur=await gh('/contents/'+AW_PATH+'?ref='+BRANCH);}catch(e){}
-      var items=cur?readJson(cur):[];
-      items.unshift({id:id,title_en:tEn,title_vi:tVi,org_en:document.getElementById('awOrgEn').value.trim(),org_vi:document.getElementById('awOrgVi').value.trim(),year:document.getElementById('awYear').value.trim(),image:imgPath});
-      var body={message:'Awards: add "'+(tEn||tVi)+'"',content:btoa(unescape(encodeURIComponent(JSON.stringify(items,null,2)))),branch:BRANCH};
-      if(cur)body.sha=cur.sha;
-      await gh('/contents/'+AW_PATH,{method:'PUT',body:JSON.stringify(body)});
+      await rmwJson(AW_PATH,function(items){items.unshift({id:id,title_en:tEn,title_vi:tVi,org_en:document.getElementById('awOrgEn').value.trim(),org_vi:document.getElementById('awOrgVi').value.trim(),year:document.getElementById('awYear').value.trim(),image:imgPath});return items;},'Awards: add "'+(tEn||tVi)+'"');
       awLog('Xong! Giải thưởng sẽ hiện trên web sau 10-30 giây.');
       ['awTitleEn','awTitleVi','awOrgEn','awOrgVi','awYear','awFile'].forEach(function(i){document.getElementById(i).value=''});
       loadAwards();
@@ -450,11 +444,7 @@ input[type=file]{width:100%;color:var(--muted);font-size:13.5px}
     if(!confirm('Xoá giải "'+(it.title_en||it.title_vi)+'"?'))return;
     persistTokenIfNeeded();
     try{
-      var cur=await gh('/contents/'+AW_PATH+'?ref='+BRANCH);
-      var list=readJson(cur);
-      var k=list.findIndex(function(x){return x.id===it.id});
-      if(k>-1)list.splice(k,1);
-      await gh('/contents/'+AW_PATH,{method:'PUT',body:JSON.stringify({message:'Awards: remove "'+(it.title_en||it.title_vi)+'"',content:btoa(unescape(encodeURIComponent(JSON.stringify(list,null,2)))),sha:cur.sha,branch:BRANCH})});
+      await rmwJson(AW_PATH,function(list){var k=list.findIndex(function(x){return x.id===it.id});if(k>-1)list.splice(k,1);return list;},'Awards: remove "'+(it.title_en||it.title_vi)+'"');
       try{var fs=await getFileSha(it.image);if(fs)await gh('/contents/'+it.image,{method:'DELETE',body:JSON.stringify({message:'Awards: remove image',sha:fs,branch:BRANCH})});}catch(e){}
       loadAwards();
     }catch(e){alert('Không xoá được: '+e.message);}
