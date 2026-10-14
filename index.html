@@ -804,7 +804,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
   nodes.forEach(function(el){el.setAttribute('data-en',el.innerHTML)});
   var langBtns=document.querySelectorAll('.lang button');
   function apply(l){
-    nodes.forEach(function(el){el.innerHTML=el.getAttribute(l==='vi'?'data-vi':'data-en')});
+    document.querySelectorAll('[data-vi]').forEach(function(el){if(!el.hasAttribute('data-en'))return;el.innerHTML=el.getAttribute(l==='vi'?'data-vi':'data-en')});
     document.documentElement.lang=l;document.title=titles[l];
     langBtns.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-lang')===l))});
     try{localStorage.setItem('lang',l)}catch(e){}
@@ -1019,7 +1019,7 @@ footer{margin-top:96px;padding-top:24px;border-top:1px solid var(--line);display
       var h3=main.querySelector('h3');
       var lesson=main.querySelector('.row.lesson');
       var btn=document.createElement('button');btn.type='button';btn.className='sc-toggle';
-      btn.setAttribute('data-en','See the story');btn.setAttribute('data-vi','Xem câu chuyện');
+      
       btn.innerHTML='<span>'+(lang()?'Xem câu chuyện':'See the story')+'</span><i>↓</i>';
       btn.setAttribute('aria-expanded','false');
       btn.addEventListener('click',function(){var o=sc.classList.toggle('open');btn.setAttribute('aria-expanded',String(o))});
